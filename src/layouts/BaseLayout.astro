@@ -5,6 +5,7 @@ import PortfolioBar from '../components/PortfolioBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
+import MobileNavDrawer from '../components/MobileNavDrawer.astro';
 import { siteConfig } from '../config/site';
 import {
   absoluteUrl,
@@ -72,6 +73,7 @@ const schemas = collectJsonLd([organizationJsonLd(), localBusinessJsonLd(), ...j
     </main>
     <Footer />
     <MobileActionBar />
+    <MobileNavDrawer />
     <script>
       import { trackEvent } from '../lib/analytics';
       import { bootInteractiveShell } from '../scripts/interactive-bootstrap';
