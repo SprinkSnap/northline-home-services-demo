@@ -1,0 +1,211 @@
+---
+const links = [
+  { href: '/services', label: 'Services' },
+  { href: '/service-areas', label: 'Service Areas' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/about', label: 'About' },
+  { href: '/request-service', label: 'Request Service', primary: true },
+];
+---
+
+<!--
+  Full-viewport drawer rendered as a direct body child (not inside sticky chrome)
+  so it always paints above the portfolio bar + header on mobile.
+-->
+<div class="mobile-nav-layer" data-mobile-nav-layer hidden>
+  <div class="mobile-nav__backdrop" data-mobile-nav-backdrop></div>
+  <div
+    id="mobile-nav-panel"
+    class="mobile-nav__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-nav-title"
+    data-mobile-nav-panel
+  >
+    <div class="mobile-nav__panel-header">
+      <p id="mobile-nav-title" class="mobile-nav__title">Menu</p>
+      <button type="button" class="mobile-nav__close" data-mobile-nav-close aria-label="Close menu">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <nav aria-label="Mobile">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} class={link.primary ? 'btn btn-primary' : 'mobile-nav__link'}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <button type="button" class="btn btn-accent" data-open-lead data-location="mobile_nav">
+            Build a Website Like This
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-mobile-nav-toggle]');
+  const layer = document.querySelector<HTMLElement>('[data-mobile-nav-layer]');
+  const panel = document.querySelector<HTMLElement>('[data-mobile-nav-panel]');
+  const backdrop = document.querySelector<HTMLElement>('[data-mobile-nav-backdrop]');
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-mobile-nav-close]');
+  const label = toggle?.querySelector('.sr-only');
+  let lastFocus: HTMLElement | null = null;
+
+  function focusables() {
+    return panel
+      ? Array.from(panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'))
+      : [];
+  }
+
+  function setOpen(open: boolean) {
+    if (!toggle || !panel || !backdrop || !layer || !label) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    layer.hidden = !open;
+    layer.classList.toggle('is-open', open);
+    panel.classList.toggle('is-open', open);
+    label.textContent = open ? 'Close menu' : 'Open menu';
+    document.body.classList.toggle('mobile-nav-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      lastFocus = document.activeElement as HTMLElement | null;
+      focusables()[0]?.focus();
+    } else {
+      lastFocus?.focus();
+    }
+  }
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    setOpen(open);
+  });
+  closeBtn?.addEventListener('click', () => setOpen(false));
+  backdrop?.addEventListener('click', () => setOpen(false));
+  panel?.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('a, [data-open-lead]')) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (layer?.hidden) return;
+    if (event.key === 'Escape') {
+      setOpen(false);
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+</script>
+
+<style is:global>
+  .mobile-nav-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    width: 100vw;
+    height: 100dvh;
+  }
+  .mobile-nav-layer[hidden] {
+    display: none !important;
+  }
+  @media (min-width: 1024px) {
+    .mobile-nav-layer {
+      display: none !important;
+    }
+  }
+  .mobile-nav__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(11 31 51 / 0.55);
+  }
+  .mobile-nav__panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 1.25rem;
+    padding-top: calc(1.25rem + env(safe-area-inset-top));
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    transform: translateY(0.75rem);
+    opacity: 0;
+    transition:
+      transform 220ms ease,
+      opacity 220ms ease;
+  }
+  .mobile-nav__panel.is-open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-nav__panel {
+      transition: none;
+    }
+  }
+  .mobile-nav__panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .mobile-nav__title {
+    margin: 0;
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1.35rem;
+    color: #0b1f33;
+  }
+  .mobile-nav__close {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #d7e0ea;
+    border-radius: 0.625rem;
+    background: #fff;
+    color: #0b1f33;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .mobile-nav__panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+  .mobile-nav__link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.5rem 0.25rem;
+    text-decoration: none;
+    font-weight: 700;
+    color: #0b1f33;
+  }
+  .mobile-nav__panel .btn {
+    width: 100%;
+  }
+  body.mobile-nav-open .site-chrome {
+    z-index: 1;
+  }
+  body.mobile-nav-open .mobile-action-bar,
+  body.mobile-nav-open .demo-assistant {
+    visibility: hidden;
+  }
+</style>

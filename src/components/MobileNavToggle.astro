@@ -1,0 +1,57 @@
+---
+
+---
+
+<button
+  type="button"
+  class="mobile-nav__toggle"
+  aria-expanded="false"
+  aria-controls="mobile-nav-panel"
+  data-mobile-nav-toggle
+>
+  <span class="mobile-nav__icon" aria-hidden="true"></span>
+  <span class="sr-only">Open menu</span>
+</button>
+
+<style is:global>
+  .mobile-nav__toggle {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 0.625rem;
+    border: 1px solid #d7e0ea;
+    background: #fff;
+    color: #0b1f33;
+    cursor: pointer;
+  }
+  .mobile-nav__icon,
+  .mobile-nav__icon::before,
+  .mobile-nav__icon::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+  }
+  .mobile-nav__icon::before,
+  .mobile-nav__icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  .mobile-nav__icon::before {
+    top: -6px;
+  }
+  .mobile-nav__icon::after {
+    top: 6px;
+  }
+  @media (min-width: 1024px) {
+    .mobile-nav__toggle {
+      display: none;
+    }
+  }
+</style>

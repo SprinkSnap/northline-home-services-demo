@@ -68,8 +68,16 @@ test.describe('NorthLine demo smoke', () => {
     const box = await dialog.boundingBox();
     expect(box).not.toBeNull();
     expect(box!.y).toBeLessThanOrEqual(1);
+    expect(box!.x).toBeLessThanOrEqual(1);
     expect(box!.height).toBeGreaterThan(300);
+    expect(box!.width).toBeGreaterThan(300);
+    const topHit = await page.evaluate(() => {
+      const el = document.elementFromPoint(window.innerWidth / 2, 24);
+      return el?.closest('[data-mobile-nav-panel]') != null;
+    });
+    expect(topHit).toBe(true);
     await expect(dialog.getByRole('link', { name: 'Services' })).toBeVisible();
+    await expect(dialog.getByRole('link', { name: 'Request Service' })).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog', { name: 'Menu' })).toHaveCount(0);
   });
