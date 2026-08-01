@@ -120,9 +120,10 @@ npm run cf:dry-run
 Bindings:
 
 - `ASSETS` — static assets
-- `SESSION` — KV auto-injected by the Astro Cloudflare adapter for sessions
 - `DB` — D1 database `northline-portfolio-leads` (**optional**; enable after creating a real DB)
 - `AI` — Workers AI (optional assistant enhancement)
+
+This demo does **not** use Astro sessions. `astro.config.mjs` sets `session.driver` to `null` so Cloudflare does not auto-provision a `SESSION` KV namespace (which previously failed deploy when the namespace title already existed).
 
 ### D1 setup and migrations
 
