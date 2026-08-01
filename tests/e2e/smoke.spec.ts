@@ -54,17 +54,26 @@ test.describe('NorthLine demo smoke', () => {
     expect(posted.filter((url) => url.includes('/api/'))).toHaveLength(0);
   });
 
-  test('mobile menu opens, traps focus path, and closes', async ({ page }, testInfo) => {
+  test('mobile menu opens on top, traps focus path, and closes', async ({ page }, testInfo) => {
     test.skip(
       testInfo.project.name.startsWith('desktop') || testInfo.project.name.startsWith('laptop'),
       'Mobile menu hidden on large screens',
     );
     await page.goto('/');
-    await page.getByRole('button', { name: /open menu/i }).click();
-    await expect(page.getByRole('dialog', { name: 'Menu' })).toBeVisible();
+    const menuButton = page.getByRole('button', { name: /open menu/i });
+    await expect(menuButton).toBeVisible();
+    await menuButton.click();
+    const dialog = page.getByRole('dialog', { name: 'Menu' });
+    await expect(dialog).toBeVisible();
+    const box = await dialog.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.y).toBeLessThanOrEqual(1);
+    expect(box!.height).toBeGreaterThan(300);
+    await expect(dialog.getByRole('link', { name: 'Services' })).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog', { name: 'Menu' })).toHaveCount(0);
   });
+
 
   test('demo pages send noindex robots meta', async ({ page }) => {
     await page.goto('/');

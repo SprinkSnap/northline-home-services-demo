@@ -19,46 +19,63 @@ const links = [
     <span class="mobile-nav__icon" aria-hidden="true"></span>
     <span class="sr-only">Open menu</span>
   </button>
-
-  <div class="mobile-nav__backdrop" data-mobile-nav-backdrop hidden></div>
-
-  <div
-    id="mobile-nav-panel"
-    class="mobile-nav__panel"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="mobile-nav-title"
-    data-mobile-nav-panel
-    hidden
-  >
-    <p id="mobile-nav-title" class="mobile-nav__title">Menu</p>
-    <nav aria-label="Mobile">
-      <ul>
-        {
-          links.map((link) => (
-            <li>
-              <a href={link.href} class={link.primary ? 'btn btn-primary' : 'mobile-nav__link'}>
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-        <li>
-          <button type="button" class="btn btn-accent" data-open-lead data-location="mobile_nav">
-            Build a Website Like This
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </div>
+
+<!--
+  Rendered at end of body via script so position:fixed is not trapped by the
+  sticky header's backdrop-filter / stacking context.
+-->
+<template data-mobile-nav-template>
+  <div class="mobile-nav-layer" data-mobile-nav-layer>
+    <div class="mobile-nav__backdrop" data-mobile-nav-backdrop hidden></div>
+    <div
+      id="mobile-nav-panel"
+      class="mobile-nav__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mobile-nav-title"
+      data-mobile-nav-panel
+      hidden
+    >
+      <div class="mobile-nav__panel-header">
+        <p id="mobile-nav-title" class="mobile-nav__title">Menu</p>
+        <button type="button" class="mobile-nav__close" data-mobile-nav-close aria-label="Close menu">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <nav aria-label="Mobile">
+        <ul>
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href} class={link.primary ? 'btn btn-primary' : 'mobile-nav__link'}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <button type="button" class="btn btn-accent" data-open-lead data-location="mobile_nav">
+              Build a Website Like This
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</template>
 
 <script>
   const root = document.querySelector('[data-mobile-nav]');
-  if (root) {
+  const template = document.querySelector<HTMLTemplateElement>('[data-mobile-nav-template]');
+  if (root && template) {
+    const layer = template.content.firstElementChild?.cloneNode(true) as HTMLElement;
+    document.body.appendChild(layer);
+
     const toggle = root.querySelector<HTMLButtonElement>('[data-mobile-nav-toggle]');
-    const panel = root.querySelector<HTMLElement>('[data-mobile-nav-panel]');
-    const backdrop = root.querySelector<HTMLElement>('[data-mobile-nav-backdrop]');
+    const panel = layer.querySelector<HTMLElement>('[data-mobile-nav-panel]');
+    const backdrop = layer.querySelector<HTMLElement>('[data-mobile-nav-backdrop]');
+    const closeBtn = layer.querySelector<HTMLButtonElement>('[data-mobile-nav-close]');
     const label = toggle?.querySelector('.sr-only');
     let lastFocus: HTMLElement | null = null;
 
@@ -74,7 +91,9 @@ const links = [
       panel.hidden = !open;
       backdrop.hidden = !open;
       panel.classList.toggle('is-open', open);
+      layer.classList.toggle('is-open', open);
       label.textContent = open ? 'Close menu' : 'Open menu';
+      document.body.classList.toggle('mobile-nav-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
       if (open) {
         lastFocus = document.activeElement as HTMLElement | null;
@@ -88,6 +107,7 @@ const links = [
       const open = toggle.getAttribute('aria-expanded') !== 'true';
       setOpen(open);
     });
+    closeBtn?.addEventListener('click', () => setOpen(false));
     backdrop?.addEventListener('click', () => setOpen(false));
     panel?.addEventListener('click', (event) => {
       const target = event.target as HTMLElement;
@@ -115,7 +135,7 @@ const links = [
   }
 </script>
 
-<style>
+<style is:global>
   .mobile-nav {
     display: block;
   }
@@ -123,8 +143,13 @@ const links = [
     .mobile-nav {
       display: none;
     }
+    .mobile-nav-layer {
+      display: none !important;
+    }
   }
   .mobile-nav__toggle {
+    position: relative;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -157,24 +182,37 @@ const links = [
   .mobile-nav__icon::after {
     top: 6px;
   }
+  .mobile-nav-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    pointer-events: none;
+  }
+  .mobile-nav-layer.is-open {
+    pointer-events: auto;
+  }
   .mobile-nav__backdrop {
     position: fixed;
     inset: 0;
-    background: rgb(11 31 51 / 0.45);
-    z-index: 70;
+    background: rgb(11 31 51 / 0.5);
+    z-index: 300;
   }
   .mobile-nav__panel {
     position: fixed;
     top: 0;
     right: 0;
-    width: min(22rem, 100%);
-    height: 100%;
+    width: min(22rem, 100vw);
+    height: 100dvh;
+    max-height: 100%;
     background: #fff;
-    z-index: 80;
+    z-index: 310;
     padding: 1.25rem;
+    padding-top: calc(1.25rem + env(safe-area-inset-top));
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
     transform: translateX(100%);
     transition: transform 220ms ease;
     overflow-y: auto;
+    box-shadow: -12px 0 40px rgb(11 31 51 / 0.18);
   }
   .mobile-nav__panel.is-open {
     transform: translateX(0);
@@ -184,11 +222,29 @@ const links = [
       transition: none;
     }
   }
+  .mobile-nav__panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
   .mobile-nav__title {
-    margin: 0 0 1rem;
+    margin: 0;
     font-family: var(--font-display), Georgia, serif;
     font-size: 1.35rem;
     color: #0b1f33;
+  }
+  .mobile-nav__close {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #d7e0ea;
+    border-radius: 0.625rem;
+    background: #fff;
+    color: #0b1f33;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
   }
   .mobile-nav__panel ul {
     list-style: none;

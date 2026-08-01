@@ -63,8 +63,10 @@ const schemas = collectJsonLd([organizationJsonLd(), localBusinessJsonLd(), ...j
   </head>
   <body data-turnstile-site-key={siteConfig.turnstile.siteKey}>
     <SkipLink />
-    <PortfolioBar />
-    <Header />
+    <div class="site-chrome">
+      <PortfolioBar />
+      <Header />
+    </div>
     <main id="main-content">
       <slot />
     </main>
