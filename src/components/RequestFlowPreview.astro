@@ -1,0 +1,73 @@
+---
+import { demoServiceOptions } from '../lib/request-flow';
+---
+
+<section class="request-preview surface" aria-labelledby="request-preview-title">
+  <p class="eyebrow">Guided request demo</p>
+  <h2 id="request-preview-title" class="display">Try the first step of a clearer request flow.</h2>
+  <p class="lead">
+    Demo only—this information will not be submitted to NorthLine because NorthLine is a fictional
+    portfolio concept.
+  </p>
+  <div class="option-grid">
+    {
+      demoServiceOptions.map((option) => (
+        <a class="option-card" href={`/request-service?service=${option.id}`}>
+          <strong>{option.label}</strong>
+          <span>{option.description}</span>
+        </a>
+      ))
+    }
+  </div>
+  <a class="btn btn-primary" href="/request-service">Continue the full demonstration</a>
+</section>
+
+<style>
+  .request-preview {
+    padding: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .request-preview {
+      padding: 1.75rem;
+    }
+  }
+  .request-preview .display {
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    margin: 0.35rem 0 0.75rem;
+  }
+  .request-preview .lead {
+    margin: 0 0 1.25rem;
+  }
+  .option-grid {
+    display: grid;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .option-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .option-card {
+    text-align: left;
+    border: 2px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: #fff;
+    padding: 0.9rem;
+    min-height: 88px;
+    display: grid;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .option-card strong {
+    color: var(--color-midnight);
+  }
+  .option-card span {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+  .option-card:hover {
+    border-color: var(--color-trust);
+  }
+</style>

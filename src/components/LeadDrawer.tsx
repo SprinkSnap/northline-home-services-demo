@@ -23,8 +23,14 @@ const fieldLabels: Record<string, string> = {
   custom: 'Custom',
 };
 
-export default function LeadDrawer({ turnstileSiteKey = '' }: { turnstileSiteKey?: string }) {
-  const [open, setOpen] = useState(false);
+export default function LeadDrawer({
+  turnstileSiteKey = '',
+  startOpen = false,
+}: {
+  turnstileSiteKey?: string;
+  startOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(startOpen);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
   const titleId = useId();
@@ -34,6 +40,10 @@ export default function LeadDrawer({ turnstileSiteKey = '' }: { turnstileSiteKey
   const previouslyFocused = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    if (startOpen) {
+      previouslyFocused.current = document.activeElement as HTMLElement | null;
+      trackEvent('portfolio_lead_started', { location: 'drawer' });
+    }
     function onOpen() {
       previouslyFocused.current = document.activeElement as HTMLElement | null;
       setOpen(true);
@@ -43,7 +53,7 @@ export default function LeadDrawer({ turnstileSiteKey = '' }: { turnstileSiteKey
     }
     window.addEventListener('northline:open-lead-drawer', onOpen);
     return () => window.removeEventListener('northline:open-lead-drawer', onOpen);
-  }, []);
+  }, [startOpen]);
 
   useEffect(() => {
     if (!open) return;

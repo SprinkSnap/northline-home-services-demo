@@ -1,6 +1,6 @@
 ---
 import BrandMark from './BrandMark.astro';
-import MobileNav from './MobileNav';
+import MobileNav from './MobileNav.astro';
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
@@ -39,29 +39,13 @@ function isActive(href: string) {
 
     <div class="site-header__ctas">
       <a class="btn btn-primary" href="/request-service">Request Service</a>
-      <button
-        type="button"
-        class="btn btn-accent"
-        data-open-lead
-        data-analytics="che_xu_cta_selected"
-        data-location="header"
-      >
+      <button type="button" class="btn btn-accent" data-open-lead data-location="header">
         Build a Website Like This
       </button>
-      <MobileNav client:load />
+      <MobileNav />
     </div>
   </div>
 </header>
-
-<script>
-  document.querySelectorAll('[data-open-lead]').forEach((el) => {
-    el.addEventListener('click', () => {
-      window.dispatchEvent(
-        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'header' } }),
-      );
-    });
-  });
-</script>
 
 <style>
   .site-header {

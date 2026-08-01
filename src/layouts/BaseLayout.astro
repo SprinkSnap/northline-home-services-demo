@@ -1,12 +1,10 @@
 ---
 import '../styles/global.css';
 import SkipLink from '../components/SkipLink.astro';
-import PortfolioBar from '../components/PortfolioBar';
+import PortfolioBar from '../components/PortfolioBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
-import LeadDrawer from '../components/LeadDrawer';
-import DemoAssistant from '../components/DemoAssistant';
 import { siteConfig } from '../config/site';
 import {
   absoluteUrl,
@@ -63,20 +61,43 @@ const schemas = collectJsonLd([organizationJsonLd(), localBusinessJsonLd(), ...j
       ))
     }
   </head>
-  <body>
+  <body data-turnstile-site-key={siteConfig.turnstile.siteKey}>
     <SkipLink />
-    <PortfolioBar client:load />
+    <PortfolioBar />
     <Header />
     <main id="main-content">
       <slot />
     </main>
     <Footer />
     <MobileActionBar />
-    <LeadDrawer client:idle turnstileSiteKey={siteConfig.turnstile.siteKey} />
-    <DemoAssistant client:idle />
     <script>
       import { trackEvent } from '../lib/analytics';
+      import { bootInteractiveShell } from '../scripts/interactive-bootstrap';
+
       trackEvent('demo_viewed', { path: window.location.pathname });
+      bootInteractiveShell(document.body.dataset.turnstileSiteKey || '');
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const lead = target.closest('[data-open-lead]');
+        if (lead instanceof HTMLElement) {
+          trackEvent('che_xu_cta_selected', {
+            location: lead.dataset.location || 'unknown',
+          });
+          window.dispatchEvent(
+            new CustomEvent('northline:open-lead-drawer', {
+              detail: { source: lead.dataset.location || 'unknown' },
+            }),
+          );
+        }
+        const analytics = target.closest('[data-analytics]');
+        if (analytics instanceof HTMLElement && analytics.dataset.analytics) {
+          trackEvent(analytics.dataset.analytics as 'che_xu_cta_selected', {
+            location: analytics.dataset.location,
+          });
+        }
+      });
     </script>
   </body>
 </html>

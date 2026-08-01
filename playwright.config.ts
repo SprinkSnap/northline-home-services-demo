@@ -12,6 +12,7 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'on-first-retry',
+    browserName: 'chromium',
   },
   webServer: {
     command: 'npm run preview -- --host 127.0.0.1 --port 4321',
@@ -20,10 +21,25 @@ export default defineConfig({
     timeout: 120_000,
   },
   projects: [
-    { name: 'mobile-360', use: { ...devices['iPhone SE'], viewport: { width: 360, height: 740 } } },
-    { name: 'mobile-390', use: { ...devices['iPhone 12'], viewport: { width: 390, height: 844 } } },
-    { name: 'tablet-768', use: { viewport: { width: 768, height: 1024 } } },
-    { name: 'laptop-1024', use: { viewport: { width: 1024, height: 768 } } },
-    { name: 'desktop-1440', use: { viewport: { width: 1440, height: 900 } } },
+    {
+      name: 'mobile-360',
+      use: { viewport: { width: 360, height: 740 }, isMobile: true, hasTouch: true },
+    },
+    {
+      name: 'mobile-390',
+      use: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
+    },
+    {
+      name: 'tablet-768',
+      use: { viewport: { width: 768, height: 1024 } },
+    },
+    {
+      name: 'laptop-1024',
+      use: { viewport: { width: 1024, height: 768 } },
+    },
+    {
+      name: 'desktop-1440',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+    },
   ],
 });

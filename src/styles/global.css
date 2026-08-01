@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/dm-sans/index.css';
-@import '@fontsource-variable/source-serif-4/index.css';
+@import '@fontsource-variable/dm-sans/wght.css';
+@import '@fontsource-variable/source-serif-4/wght.css';
 
 @theme {
   --color-midnight: #0b1f33;

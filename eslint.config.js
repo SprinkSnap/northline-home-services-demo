@@ -13,6 +13,7 @@ export default [
       'coverage/**',
       'playwright-report/**',
       'test-results/**',
+      'worker-configuration.d.ts',
     ],
   },
   ...eslintPluginAstro.configs.recommended,

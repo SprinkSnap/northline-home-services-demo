@@ -11,9 +11,17 @@ import {
 
 const steps = ['Service', 'Request type', 'Timing', 'Contact preview'] as const;
 
+function initialService(): DemoServiceChoice | undefined {
+  if (typeof window === 'undefined') return undefined;
+  const value = new URLSearchParams(window.location.search).get('service');
+  const allowed = demoServiceOptions.map((option) => option.id);
+  return allowed.includes(value ?? '') ? (value as DemoServiceChoice) : undefined;
+}
+
 export default function RequestFlow({ compact = false }: { compact?: boolean }) {
-  const [step, setStep] = useState(0);
-  const [state, setState] = useState<DemoRequestState>({});
+  const preset = initialService();
+  const [step, setStep] = useState(preset ? 1 : 0);
+  const [state, setState] = useState<DemoRequestState>({ service: preset });
   const [complete, setComplete] = useState(false);
 
   const requestTypes = useMemo(() => {

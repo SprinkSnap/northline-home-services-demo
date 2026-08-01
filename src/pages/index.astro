@@ -4,7 +4,7 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqList from '../components/FaqList.astro';
-import RequestFlow from '../components/RequestFlow';
+import RequestFlowPreview from '../components/RequestFlowPreview.astro';
 import { services } from '../content/services';
 import { homeFaqs } from '../content/faqs';
 import { serviceAreaGuidance, serviceAreaGroups } from '../content/areas';
@@ -169,7 +169,7 @@ import { siteConfig } from '../config/site';
     <div class="container-nl">
       <p class="eyebrow">Service-request demonstration</p>
       <h2 id="demo-request-title" class="sr-only">Try the request flow</h2>
-      <RequestFlow client:visible compact />
+      <RequestFlowPreview />
     </div>
   </section>
 

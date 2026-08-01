@@ -83,11 +83,15 @@ Add screenshots of:
 
 Populate after running Lighthouse against the deployed or locally previewed build. Do **not** describe concept metrics as real NorthLine business results.
 
-| Page            | Performance | Accessibility | Best Practices | SEO notes                         |
-| --------------- | ----------- | ------------- | -------------- | --------------------------------- |
-| Home            | TBD         | TBD           | TBD            | Deliberate `noindex` in demo mode |
-| Service page    | TBD         | TBD           | TBD            | Deliberate `noindex` in demo mode |
-| Request Service | TBD         | TBD           | TBD            | Deliberate `noindex` in demo mode |
+| Page                             | Performance | Accessibility | Best Practices | SEO notes                                                |
+| -------------------------------- | ----------- | ------------- | -------------- | -------------------------------------------------------- |
+| Home                             | 99          | 100           | 100            | SEO category 66 due to deliberate `noindex` in demo mode |
+| Service page (Heating & Cooling) | 97          | 100           | 100            | SEO category 66 due to deliberate `noindex` in demo mode |
+| Request Service                  | 98          | 100           | 100            | SEO category 66 due to deliberate `noindex` in demo mode |
+
+Measured locally with Lighthouse mobile simulation against `astro preview` (Cloudflare adapter). These are concept demo metrics, not NorthLine business results.
+
+Additional homepage vitals from the same run: LCP ~2.0s, CLS ~0.003, total transfer ~353 KiB.
 
 ### Live demo link
 
