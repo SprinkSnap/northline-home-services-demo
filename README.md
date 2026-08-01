@@ -31,21 +31,22 @@ Open `http://localhost:4321`.
 
 ### Useful commands
 
-| Command                    | Purpose                                                  |
-| -------------------------- | -------------------------------------------------------- |
-| `npm run dev`              | Local Astro/Cloudflare dev server                        |
-| `npm run build`            | Production build                                         |
-| `npm run preview`          | Preview the production build                             |
-| `npm run typecheck`        | Astro + TypeScript check                                 |
-| `npm run lint`             | ESLint                                                   |
-| `npm run format`           | Prettier write                                           |
-| `npm run format:check`     | Prettier check                                           |
-| `npm run test`             | Vitest unit + integration                                |
-| `npm run test:e2e`         | Playwright flows (builds/previews first via config)      |
-| `npm run check`            | format check + lint + typecheck + unit/integration tests |
-| `npm run cf:typegen`       | Generate Wrangler types                                  |
-| `npm run cf:dry-run`       | Wrangler deploy dry run                                  |
-| `npm run db:migrate:local` | Apply D1 migrations locally                              |
+| Command                    | Purpose                                                   |
+| -------------------------- | --------------------------------------------------------- |
+| `npm run dev`              | Local Astro/Cloudflare dev server                         |
+| `npm run build`            | Production build                                          |
+| `npm run preview`          | Preview the production build                              |
+| `npm run typecheck`        | Astro + TypeScript check                                  |
+| `npm run lint`             | ESLint                                                    |
+| `npm run format`           | Prettier write                                            |
+| `npm run format:check`     | Prettier check                                            |
+| `npm run test`             | Vitest unit + integration                                 |
+| `npm run test:e2e`         | Playwright flows (builds/previews first via config)       |
+| `npm run check`            | format check + lint + typecheck + unit/integration tests  |
+| `npm run cf:typegen`       | Generate Wrangler types                                   |
+| `npm run cf:dry-run`       | Build + Wrangler deploy dry run (uses `dist/server`)      |
+| `npm run cf:deploy`        | Build + deploy Worker from generated `dist/server` config |
+| `npm run db:migrate:local` | Apply D1 migrations locally                               |
 
 ## Environment variables
 
@@ -83,13 +84,45 @@ When `PUBLIC_DEMO_MODE=false`:
 
 ## Cloudflare configuration
 
-Primary config: `wrangler.jsonc`
+Primary source config: `wrangler.jsonc` (used by `astro dev` and the Vite plugin).
+
+After `astro build`, Astro writes the **deployable** Worker config to:
+
+`dist/server/wrangler.json` → `main: "entry.mjs"`, assets in `dist/client`
+
+### Cloudflare Workers Builds / dashboard settings
+
+Use these exact settings so deploy does not look for the virtual package entrypoint:
+
+| Setting          | Value                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Framework preset | None (or Astro if available — still override deploy command) |
+| Build command    | `npm run build`                                              |
+| Deploy command   | `npx wrangler deploy --config dist/server/wrangler.json`     |
+| Root directory   | `/` (repository root)                                        |
+
+**Do not** run bare `npx wrangler deploy` against the source `wrangler.jsonc` in CI. That config’s `main` is `@astrojs/cloudflare/entrypoints/server`, which is a Node package export for local/dev and is not a built Worker file. Cloudflare CI then fails with “entry-point file … was not found”.
+
+Local / CLI deploy:
+
+```bash
+npm run cf:deploy
+# equivalent to:
+# npm run build && npx wrangler deploy --config dist/server/wrangler.json
+```
+
+Dry run:
+
+```bash
+npm run cf:dry-run
+```
 
 Bindings:
 
 - `ASSETS` — static assets
 - `DB` — D1 database `northline-portfolio-leads`
 - `AI` — Workers AI (optional assistant enhancement)
+- `SESSION` — KV auto-injected by the Astro Cloudflare adapter for sessions
 
 Replace the placeholder D1 `database_id` with your real database id:
 
@@ -176,8 +209,19 @@ npm run test:e2e
 ## Dry-run deployment
 
 ```bash
-npm run build
 npm run cf:dry-run
+```
+
+## Production deploy (authorized only)
+
+```bash
+npm run cf:deploy
+```
+
+Or in the Cloudflare dashboard, set **Deploy command** to:
+
+```bash
+npx wrangler deploy --config dist/server/wrangler.json
 ```
 
 Do **not** deploy, change DNS, or provision paid resources without explicit authorization.

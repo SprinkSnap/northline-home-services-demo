@@ -59,6 +59,8 @@
 - [ ] D1 binding verified
 - [ ] AI binding optional but documented
 - [ ] Edge rate limiting configured for `/api/*`
+- [ ] Workers Builds **Build command** = `npm run build`
+- [ ] Workers Builds **Deploy command** = `npx wrangler deploy --config dist/server/wrangler.json`
 - [ ] `npm run cf:dry-run` succeeds
 - [ ] Deployment authorized before any live publish
 

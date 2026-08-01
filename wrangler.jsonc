@@ -3,6 +3,10 @@
   "compatibility_date": "2026-08-01",
   "compatibility_flags": ["nodejs_compat"],
   "name": "northline-home-services-demo",
+  // Virtual entry for `astro dev` / Vite plugin. Not a deployable Worker file by itself.
+  // After `astro build`, deploy with the generated config:
+  //   npx wrangler deploy --config dist/server/wrangler.json
+  // or: npm run cf:deploy
   "main": "@astrojs/cloudflare/entrypoints/server",
   "assets": {
     "directory": "./dist",
