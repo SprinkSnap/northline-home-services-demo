@@ -120,19 +120,25 @@ npm run cf:dry-run
 Bindings:
 
 - `ASSETS` — static assets
-- `DB` — D1 database `northline-portfolio-leads`
-- `AI` — Workers AI (optional assistant enhancement)
 - `SESSION` — KV auto-injected by the Astro Cloudflare adapter for sessions
+- `DB` — D1 database `northline-portfolio-leads` (**optional**; enable after creating a real DB)
+- `AI` — Workers AI (optional assistant enhancement)
 
-Replace the placeholder D1 `database_id` with your real database id:
+### D1 setup and migrations
+
+The marketing site deploys **without** D1. Che Xu Studio lead capture (`POST /api/portfolio-lead`) returns `STORAGE_UNAVAILABLE` until D1 is bound.
+
+Migration file: `migrations/0001_portfolio_leads.sql`
+
+1. Create the database (authorized Cloudflare account only):
 
 ```bash
 npx wrangler d1 create northline-portfolio-leads
 ```
 
-### D1 setup and migrations
+2. Copy the returned `database_id` into `wrangler.jsonc` by uncommenting the `d1_databases` block and replacing `REPLACE_WITH_REAL_D1_DATABASE_ID`.
 
-Migration file: `migrations/0001_portfolio_leads.sql`
+3. Apply migrations:
 
 ```bash
 # Local
@@ -140,6 +146,12 @@ npm run db:migrate:local
 
 # Remote (authorized environments only)
 npx wrangler d1 migrations apply northline-portfolio-leads --remote
+```
+
+4. Redeploy:
+
+```bash
+npm run cf:deploy
 ```
 
 Suggested fields: `id`, `name`, `email`, `business_type`, `existing_website`, `primary_goal`, `package_interest`, `message`, `consent`, `source_demo`, `created_at`, `consent_at`.
