@@ -1,0 +1,51 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you requested is not available in the NorthLine Home Services portfolio concept."
+  path="/404"
+>
+  <section class="section-nl">
+    <div class="container-nl">
+      <p class="eyebrow">404</p>
+      <h1 class="display page-title">This page is not on the map.</h1>
+      <p class="lead">
+        The link may be outdated, or the page may not exist in this portfolio demonstration.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/">Return home</a>
+        <a class="btn btn-secondary" href="/services">Explore services</a>
+        <button type="button" class="btn btn-accent" data-open-lead
+          >Build a Website Like This</button
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: '404' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.35rem 0 0.85rem;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+</style>

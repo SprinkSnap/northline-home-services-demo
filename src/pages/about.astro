@@ -1,0 +1,92 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="About This Portfolio Concept"
+  description="Learn why Che Xu Studio created the NorthLine Home Services website concept and how it demonstrates contractor conversion design."
+  path="/about"
+>
+  <section class="section-nl">
+    <div class="container-nl prose-nl">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ]}
+      />
+      <p class="eyebrow">About the concept</p>
+      <h1 class="display page-title">Built to Show What Great Contractor Websites Feel Like</h1>
+      <p class="lead">{siteConfig.description}</p>
+
+      <aside class="notice" role="note">
+        <strong>NorthLine Home Services is fictional.</strong>
+        There is no real NorthLine address, phone number, staff roster, vehicle fleet, licence set, insurance
+        claim, review catalogue, or completed-job statistic on this website.
+      </aside>
+
+      <h2>Why this demo exists</h2>
+      <p>
+        Local service businesses often inherit outdated templates, unclear service menus, and forms
+        that ask for too much too soon. NorthLine demonstrates a calmer alternative: clear
+        information architecture, mobile conversion actions, and a guided request experience.
+      </p>
+
+      <h2>What Che Xu Studio is demonstrating</h2>
+      <ul>
+        <li>Premium, trustworthy visual design for home-service brands</li>
+        <li>Search-ready service and area architecture</li>
+        <li>Accessible, low-friction enquiry patterns</li>
+        <li>Performance-minded static generation on Cloudflare</li>
+        <li>Secure lead capture for real Che Xu Studio conversations</li>
+      </ul>
+
+      <h2>Who this is for</h2>
+      <p>
+        HVAC companies, plumbers, electricians, maintenance providers, and other local contractors
+        who want a website that turns local searches into qualified conversations.
+      </p>
+
+      <div class="cta-row">
+        <button type="button" class="btn btn-accent" data-open-lead
+          >Build a Website Like This</button
+        >
+        <a class="btn btn-secondary" href="/contact">Contact Che Xu Studio</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'about' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.35rem 0 0.85rem;
+  }
+  .notice {
+    margin: 1.25rem 0;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: #fff7ed;
+    border: 1px solid #f5d0a9;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.75rem;
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import RequestFlow from '../components/RequestFlow';
+---
+
+<BaseLayout
+  title="Request Service Demonstration"
+  description="Experience a guided home-services request flow designed by Che Xu Studio. Demo only—no NorthLine bookings are accepted."
+  path="/request-service"
+>
+  <section class="section-nl">
+    <div class="container-nl">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Request Service', path: '/request-service' },
+        ]}
+      />
+      <p class="eyebrow">Conversion funnel demo</p>
+      <h1 class="display page-title">Request Service — Demonstration Only</h1>
+      <p class="lead">
+        Walk through a polished multistep request experience. Nothing entered here is stored or
+        transmitted as a NorthLine service booking.
+      </p>
+      <RequestFlow client:idle />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.35rem 0 0.85rem;
+  }
+</style>

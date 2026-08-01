@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="NorthLine Home Services portfolio concept by Che Xu Studio">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1F33"/>
+      <stop offset="55%" stop-color="#123352"/>
+      <stop offset="100%" stop-color="#176BFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="90" fill="#F5A623" opacity="0.9"/>
+  <rect x="80" y="90" width="72" height="72" rx="18" fill="#176BFF"/>
+  <path d="M96 145V113h8l14 22V113h8v32h-8l-14-22v22h-8z" fill="#fff"/>
+  <path d="M134 145V113h9v32h-9z" fill="#F5A623"/>
+  <text x="80" y="230" fill="#FFFFFF" font-family="Georgia, serif" font-size="64" font-weight="700">NorthLine Home Services</text>
+  <text x="80" y="300" fill="#EAF3FF" font-family="Arial, sans-serif" font-size="34">Reliable home comfort, without the runaround.</text>
+  <text x="80" y="380" fill="#F5A623" font-family="Arial, sans-serif" font-size="28" font-weight="700">Portfolio concept by Che Xu Studio</text>
+  <text x="80" y="440" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="24" opacity="0.85">Fictional demonstration · Conversion · Local SEO · Mobile-first</text>
+</svg>

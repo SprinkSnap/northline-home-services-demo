@@ -1,0 +1,108 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqList from '../components/FaqList.astro';
+import { contactFaqs } from '../content/faqs';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Contact Che Xu Studio"
+  description="Contact Che Xu Studio about a conversion-focused website like the NorthLine Home Services portfolio concept."
+  path="/contact"
+>
+  <section class="section-nl">
+    <div class="container-nl">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' },
+        ]}
+      />
+      <p class="eyebrow">Real enquiries only</p>
+      <h1 class="display page-title">Contact Che Xu Studio</h1>
+      <p class="lead">
+        NorthLine does not accept service requests. If you want a website built for your business,
+        reach Che Xu Studio directly.
+      </p>
+
+      <div class="contact-grid">
+        <article class="surface">
+          <h2>Build a website like this</h2>
+          <p>
+            Share your business type, goals, and any existing website. We’ll recommend a starting
+            package.
+          </p>
+          <button type="button" class="btn btn-accent" data-open-lead
+            >Request My Website Plan</button
+          >
+        </article>
+        <article class="surface">
+          <h2>Email</h2>
+          <p>
+            <a href={`mailto:${siteConfig.cheXu.email}`}>{siteConfig.cheXu.email}</a>
+          </p>
+          <h2>Packages</h2>
+          <p>
+            <a href={siteConfig.cheXu.packagesUrl}>View Che Xu Studio packages</a>
+          </p>
+          <h2>Case study</h2>
+          <p>
+            Finished case-study copy for the Che Xu Studio site is included in this repository as
+            <code>CASE_STUDY_COPY.md</code> for publishing on an indexable
+            <code>/work/northline-home-services</code> page.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <FaqList faqs={contactFaqs} heading="Contact FAQs" />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'contact' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.35rem 0 0.85rem;
+  }
+  .contact-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+  .contact-grid article {
+    padding: 1.25rem;
+  }
+  .contact-grid h2 {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    color: var(--color-midnight);
+    font-size: 1.25rem;
+  }
+  .contact-grid article h2 + h2 {
+    margin-top: 1.25rem;
+  }
+  .contact-grid p {
+    color: var(--color-muted);
+  }
+  .contact-grid a {
+    color: var(--color-trust-dark);
+    font-weight: 700;
+  }
+</style>

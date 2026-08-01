@@ -1,0 +1,181 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FaqList from '../../components/FaqList.astro';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import { getService, services } from '../../content/services';
+import { serviceJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const service = getService(slug ?? '');
+if (!service) {
+  return Astro.redirect('/404');
+}
+
+const related = service.related.map((item) => getService(item)).filter(Boolean);
+---
+
+<BaseLayout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}`}
+  jsonLd={[
+    serviceJsonLd({
+      name: service.name,
+      description: service.summary,
+      path: `/services/${service.slug}`,
+    }),
+  ]}
+>
+  <section class="section-nl">
+    <div class="container-nl prose-nl">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' },
+          { name: service.name, path: `/services/${service.slug}` },
+        ]}
+      />
+      <p class="eyebrow">{service.eyebrow}</p>
+      <div class="title-row">
+        <div class="icon" aria-hidden="true"><ServiceIcon name={service.icon} /></div>
+        <h1 class="display page-title">{service.title}</h1>
+      </div>
+      <p class="lead">{service.summary}</p>
+
+      {
+        service.emergencyNotice && (
+          <aside class="emergency" role="note">
+            <strong>Safety notice:</strong> {service.emergencyNotice}
+          </aside>
+        )
+      }
+
+      <h2>Common service categories</h2>
+      <div class="categories">
+        {
+          service.categories.map((category) => (
+            <article class="surface">
+              <h3>{category.name}</h3>
+              <p>{category.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2>When to request service</h2>
+      <ul>
+        {service.whenToRequest.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <h2>Customer journey</h2>
+      <ol class="journey">
+        {service.journey.map((item) => <li>{item}</li>)}
+      </ol>
+
+      <h2>Related services</h2>
+      <ul class="related">
+        {
+          related.map((item) =>
+            item ? (
+              <li>
+                <a href={`/services/${item.slug}`}>{item.name}</a>
+              </li>
+            ) : null,
+          )
+        }
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href={`/request-service?service=${service.slug}`}>
+          Request Service
+        </a>
+        <button type="button" class="btn btn-accent" data-open-lead>
+          Build a Website Like This
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <FaqList faqs={service.faqs} heading={`${service.name} FAQs`} />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'service_page' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0;
+  }
+  .title-row {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    margin: 0.5rem 0 1rem;
+  }
+  .icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.85rem;
+    display: grid;
+    place-items: center;
+    background: var(--color-light-blue);
+    color: var(--color-trust-dark);
+    flex-shrink: 0;
+  }
+  .emergency {
+    background: #fff7ed;
+    border: 1px solid #f5d0a9;
+    border-radius: var(--radius-md);
+    padding: 0.9rem 1rem;
+    margin: 1.25rem 0;
+  }
+  .categories {
+    display: grid;
+    gap: 0.85rem;
+    margin: 1rem 0 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .categories {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .categories article {
+    padding: 1rem;
+  }
+  .categories h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+  .categories p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+  .journey,
+  .related {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 1.75rem 0 0.5rem;
+  }
+</style>

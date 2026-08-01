@@ -1,0 +1,143 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { serviceAreaGuidance, serviceAreaGroups } from '../content/areas';
+---
+
+<BaseLayout
+  title="Service Areas Architecture"
+  description="See how Che Xu Studio organizes local service-area SEO without thin duplicate city pages—demonstrated in the NorthLine portfolio concept."
+  path="/service-areas"
+>
+  <section class="section-nl">
+    <div class="container-nl">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Service Areas', path: '/service-areas' },
+        ]}
+      />
+      <p class="eyebrow">Local SEO demonstration</p>
+      <h1 class="display page-title">{serviceAreaGuidance.heading}</h1>
+      <p class="lead">{serviceAreaGuidance.intro}</p>
+
+      <aside class="notice" role="note">
+        Because NorthLine is fictional, this demo does not publish fake addresses, phone numbers, or
+        LocalBusiness structured data. A real client launch requires verified coverage details.
+      </aside>
+
+      <h2 class="display subhead">Responsible coverage principles</h2>
+      <ul class="principles">
+        {serviceAreaGuidance.principles.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <h2 class="display subhead">Regional groupings</h2>
+      <div class="groups">
+        {
+          serviceAreaGroups.map((group) => (
+            <article class="surface">
+              <h3>{group.name}</h3>
+              <p>{group.summary}</p>
+              <p>
+                <strong>Example communities:</strong> {group.exampleCommunities.join(', ')}
+              </p>
+              <h4>Before publishing a location page</h4>
+              <ul>
+                {group.contentRequirements.map((req) => (
+                  <li>{req}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="template surface">
+        <h2>Location page template readiness</h2>
+        <p>{serviceAreaGuidance.templateNote}</p>
+        <p>
+          Recommended URL pattern for verified clients: <code>/service-areas/[community]</code> — only
+          after unique local content is approved.
+        </p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/request-service">Try the request demo</a>
+        <button type="button" class="btn btn-accent" data-open-lead
+          >Build a Website Like This</button
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'service_areas' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.35rem 0 0.85rem;
+  }
+  .subhead {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin: 2rem 0 0.85rem;
+  }
+  .notice {
+    margin: 1.25rem 0;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-light-blue);
+    border: 1px solid var(--color-border);
+  }
+  .principles {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .groups {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 900px) {
+    .groups {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .groups article,
+  .template {
+    padding: 1.1rem;
+  }
+  .groups h3,
+  .template h2 {
+    margin: 0 0 0.55rem;
+    font-family: var(--font-display);
+    color: var(--color-midnight);
+  }
+  .groups h4 {
+    margin: 0.85rem 0 0.4rem;
+    font-size: 0.95rem;
+  }
+  .template {
+    margin-top: 1.5rem;
+  }
+  code {
+    background: var(--color-offwhite);
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.35rem;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.75rem;
+  }
+</style>

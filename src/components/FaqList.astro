@@ -1,0 +1,73 @@
+---
+import type { FaqItem } from '../content/faqs';
+import { faqJsonLd } from '../lib/seo';
+
+interface Props {
+  faqs: FaqItem[];
+  heading?: string;
+  includeSchema?: boolean;
+}
+const { faqs, heading = 'Frequently asked questions', includeSchema = true } = Astro.props;
+const schema = includeSchema ? faqJsonLd(faqs) : null;
+---
+
+<section class="faq section-nl" aria-labelledby="faq-heading">
+  <div class="container-nl">
+    <h2
+      id="faq-heading"
+      class="display"
+      style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 1rem;"
+    >
+      {heading}
+    </h2>
+    <div class="faq-list">
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+<style>
+  .faq-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .faq-item {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.25rem 1rem;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-midnight);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    content: '+';
+    margin-left: auto;
+    color: var(--color-trust);
+    font-size: 1.25rem;
+  }
+  details[open] summary::after {
+    content: '–';
+  }
+  p {
+    margin: 0 0 1rem;
+    color: var(--color-muted);
+  }
+</style>

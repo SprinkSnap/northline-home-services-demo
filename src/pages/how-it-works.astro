@@ -1,0 +1,105 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout
+  title="How the Request Experience Works"
+  description="Walk through the NorthLine guided service-request demonstration and see how Che Xu Studio designs clearer contractor customer journeys."
+  path="/how-it-works"
+>
+  <section class="section-nl">
+    <div class="container-nl">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'How It Works', path: '/how-it-works' },
+        ]}
+      />
+      <p class="eyebrow">Customer journey</p>
+      <h1 class="display page-title">A Clear Path From Question to Next Step</h1>
+      <p class="lead">
+        Homeowners should not need to decode your trade language to ask for help. This journey shows
+        how a contractor website can guide decisions without pressure.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <h2>1. Choose a service</h2>
+          <p>Heating and cooling, plumbing, electrical, home maintenance—or “not sure.”</p>
+        </li>
+        <li>
+          <h2>2. Describe the request type</h2>
+          <p>High-level categories keep the form short and avoid unsafe diagnostic advice.</p>
+        </li>
+        <li>
+          <h2>3. Share preferred timing</h2>
+          <p>Timing preferences communicate planning intent without promising real availability.</p>
+        </li>
+        <li>
+          <h2>4. Preview contact details</h2>
+          <p>In this demo, contact fields are local-only and are not submitted to NorthLine.</p>
+        </li>
+        <li>
+          <h2>5. Continue with Che Xu Studio</h2>
+          <p>After the demo, business owners can request a website plan for their own company.</p>
+        </li>
+      </ol>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/request-service">Try the Request Demo</a>
+        <button type="button" class="btn btn-accent" data-open-lead
+          >Build a Website Like This</button
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'how_it_works' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.35rem 0 0.85rem;
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 1.75rem 0 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .steps li {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.2rem;
+  }
+  .steps h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.2rem;
+    font-family: var(--font-display);
+    color: var(--color-midnight);
+  }
+  .steps p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.75rem;
+  }
+</style>

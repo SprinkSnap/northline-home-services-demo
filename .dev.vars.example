@@ -1,0 +1,18 @@
+# Copy to `.dev.vars` for local Wrangler / Astro Cloudflare development.
+# Never commit real secrets.
+
+# Cloudflare Turnstile
+TURNSTILE_SECRET_KEY=replace-with-turnstile-secret
+PUBLIC_TURNSTILE_SITE_KEY=replace-with-turnstile-site-key
+
+# Site
+PUBLIC_SITE_URL=http://localhost:4321
+PUBLIC_DEMO_MODE=true
+PUBLIC_CHEXU_URL=https://chexustudio.com
+PUBLIC_CHEXU_PACKAGES_URL=https://chexustudio.com/packages
+PUBLIC_CASE_STUDY_URL=https://chexustudio.com/work/northline-home-services
+PUBLIC_CHEXU_EMAIL=hello@chexustudio.com
+PUBLIC_ANALYTICS_ENABLED=false
+
+# Comma-separated browser origins allowed to call /api/*
+ALLOWED_ORIGINS=http://localhost:4321,http://127.0.0.1:4321

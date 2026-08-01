@@ -1,0 +1,83 @@
+---
+import type { ServiceDefinition } from '../content/services';
+import ServiceIcon from './ServiceIcon.astro';
+
+interface Props {
+  service: ServiceDefinition;
+}
+const { service } = Astro.props;
+---
+
+<article class="service-card surface">
+  <div class="service-card__icon" aria-hidden="true">
+    <ServiceIcon name={service.icon} />
+  </div>
+  <h3>{service.name}</h3>
+  <p>{service.cardDescription}</p>
+  <ul>
+    {service.examples.map((example) => <li>{example}</li>)}
+  </ul>
+  <div class="service-card__actions">
+    <a class="btn btn-secondary" href={`/services/${service.slug}`}> Explore Service </a>
+    <a class="btn btn-primary" href={`/request-service?service=${service.slug}`}>
+      Request Service
+    </a>
+  </div>
+</article>
+
+<style>
+  .service-card {
+    padding: 1.15rem;
+    display: grid;
+    gap: 0.7rem;
+    align-content: start;
+    transition:
+      transform var(--motion-base) ease,
+      box-shadow var(--motion-base) ease;
+  }
+  .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-card:hover {
+      transform: none;
+    }
+  }
+  .service-card__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    display: grid;
+    place-items: center;
+    background: var(--color-light-blue);
+    color: var(--color-trust-dark);
+  }
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-midnight);
+  }
+  p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--color-charcoal);
+    display: grid;
+    gap: 0.25rem;
+  }
+  .service-card__actions {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+  }
+  @media (min-width: 480px) {
+    .service-card__actions {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

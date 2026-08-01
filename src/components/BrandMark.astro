@@ -1,0 +1,66 @@
+---
+interface Props {
+  variant?: 'dark' | 'light';
+  showWordmark?: boolean;
+  compact?: boolean;
+}
+const { variant = 'dark', showWordmark = true, compact = false } = Astro.props;
+const color = variant === 'light' ? '#FFFFFF' : '#0B1F33';
+const accent = '#176BFF';
+---
+
+<span class:list={['brand-mark', compact && 'brand-mark--compact']} style={`color:${color}`}>
+  <svg
+    class="brand-mark__badge"
+    width={compact ? 32 : 40}
+    height={compact ? 32 : 40}
+    viewBox="0 0 40 40"
+    role="img"
+    aria-label="NorthLine Home Services"
+  >
+    <rect width="40" height="40" rx="10" fill={accent}></rect>
+    <path d="M10 27V13h3.2l6.1 9.2V13H23v14h-3.2l-6.1-9.2V27H10z" fill="#FFFFFF"></path>
+    <path d="M26 27V13h3.4v14H26z" fill="#F5A623"></path>
+  </svg>
+  {
+    showWordmark && (
+      <span class="brand-mark__text">
+        <span class="brand-mark__name">NorthLine</span>
+        <span class="brand-mark__sub">Home Services</span>
+      </span>
+    )
+  }
+</span>
+
+<style>
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+  .brand-mark__badge {
+    flex-shrink: 0;
+  }
+  .brand-mark__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .brand-mark__name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  .brand-mark__sub {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .brand-mark--compact .brand-mark__name {
+    font-size: 1.05rem;
+  }
+</style>

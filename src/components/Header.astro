@@ -1,0 +1,112 @@
+---
+import BrandMark from './BrandMark.astro';
+import MobileNav from './MobileNav.astro';
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const links = [
+  { href: '/services', label: 'Services' },
+  { href: '/service-areas', label: 'Service Areas' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/about', label: 'About' },
+];
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+---
+
+<header class="site-header">
+  <div class="container-nl site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="NorthLine Home Services home">
+      <BrandMark />
+    </a>
+
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-header__ctas">
+      <a class="btn btn-primary" href="/request-service">Request Service</a>
+      <button type="button" class="btn btn-accent" data-open-lead data-location="header">
+        Build a Website Like This
+      </button>
+      <MobileNav />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(248 250 252 / 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-header__inner {
+    min-height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .site-header__brand {
+    text-decoration: none;
+  }
+  .site-header__nav {
+    display: none;
+  }
+  .site-header__nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-header__nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 0.7rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 650;
+    color: var(--color-charcoal);
+  }
+  .site-header__nav a:hover,
+  .site-header__nav a[aria-current='page'] {
+    background: var(--color-light-blue);
+    color: var(--color-trust-dark);
+  }
+  .site-header__ctas {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .site-header__ctas .btn-primary,
+  .site-header__ctas .btn-accent {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .site-header__nav {
+      display: block;
+    }
+    .site-header__ctas .btn-primary,
+    .site-header__ctas .btn-accent {
+      display: inline-flex;
+    }
+  }
+</style>
