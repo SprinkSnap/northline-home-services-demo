@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import SkipLink from '../components/SkipLink.astro';
+import PortfolioBar from '../components/PortfolioBar';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileActionBar from '../components/MobileActionBar.astro';
+import LeadDrawer from '../components/LeadDrawer';
+import DemoAssistant from '../components/DemoAssistant';
+import { siteConfig } from '../config/site';
+import {
+  absoluteUrl,
+  buildTitle,
+  collectJsonLd,
+  localBusinessJsonLd,
+  organizationJsonLd,
+  robotsContent,
+} from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Array<Record<string, unknown> | null | undefined>;
+}
+
+const { title, description, path, ogType = 'website', jsonLd = [] } = Astro.props;
+
+const pageTitle = buildTitle(title);
+const canonical = absoluteUrl(path);
+const robots = robotsContent();
+const ogImage = absoluteUrl(siteConfig.social.ogImage);
+const schemas = collectJsonLd([organizationJsonLd(), localBusinessJsonLd(), ...jsonLd]);
+---
+
+<!doctype html>
+<html lang={siteConfig.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0B1F33" />
+    {
+      schemas.map((schema) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+  </head>
+  <body>
+    <SkipLink />
+    <PortfolioBar client:load />
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <MobileActionBar />
+    <LeadDrawer client:idle turnstileSiteKey={siteConfig.turnstile.siteKey} />
+    <DemoAssistant client:idle />
+    <script>
+      import { trackEvent } from '../lib/analytics';
+      trackEvent('demo_viewed', { path: window.location.pathname });
+    </script>
+  </body>
+</html>

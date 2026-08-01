@@ -1,0 +1,125 @@
+---
+import BrandMark from './BrandMark.astro';
+import { siteConfig } from '../config/site';
+---
+
+<footer class="site-footer">
+  <div class="container-nl site-footer__grid">
+    <div>
+      <BrandMark variant="light" />
+      <p class="site-footer__tagline">{siteConfig.tagline}</p>
+      <p class="site-footer__disclosure">
+        Portfolio concept by Che Xu Studio. NorthLine Home Services is a fictional demonstration and
+        does not accept service requests.
+      </p>
+    </div>
+
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/service-areas">Service Areas</a></li>
+        <li><a href="/how-it-works">How It Works</a></li>
+        <li><a href="/request-service">Request Service Demo</a></li>
+        <li><a href="/about">About This Concept</a></li>
+        <li><a href="/contact">Contact Che Xu Studio</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>For business owners</h2>
+      <ul>
+        <li>
+          <button type="button" class="linkish" data-open-lead>Build a Website Like This</button>
+        </li>
+        <li>
+          <a href={siteConfig.cheXu.packagesUrl} data-analytics="package_link_selected">
+            View Che Xu Studio Packages
+          </a>
+        </li>
+        <li><a href="#case-study-copy">Case Study Copy</a></li>
+        <li><a href={`mailto:${siteConfig.cheXu.email}`}>{siteConfig.cheXu.email}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-nl site-footer__base">
+    <p>© {new Date().getFullYear()} Concept by Che Xu Studio. Demo only.</p>
+    <p>Privacy-conscious analytics. No fake reviews, licences, or NAP data.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'footer' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .site-footer {
+    background: var(--color-midnight);
+    color: rgb(255 255 255 / 0.9);
+    padding: 3rem 0 2rem;
+    margin-top: 2rem;
+  }
+  .site-footer__grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .site-footer__grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+  }
+  .site-footer__tagline {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin: 1rem 0 0.75rem;
+  }
+  .site-footer__disclosure {
+    color: rgb(255 255 255 / 0.72);
+    max-width: 28rem;
+  }
+  h2 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+  a,
+  .linkish {
+    color: rgb(255 255 255 / 0.9);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+  }
+  .site-footer__base {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(255 255 255 / 0.14);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    justify-content: space-between;
+    color: rgb(255 255 255 / 0.65);
+    font-size: 0.9rem;
+  }
+  p {
+    margin: 0;
+  }
+</style>

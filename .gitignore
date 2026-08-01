@@ -1,0 +1,34 @@
+# build output
+dist/
+.wrangler/
+.wrangler-dry-run/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.*
+.dev.vars
+!.env.example
+!.dev.vars.example
+
+# test / coverage
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/

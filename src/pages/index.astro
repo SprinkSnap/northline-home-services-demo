@@ -1,0 +1,426 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FaqList from '../components/FaqList.astro';
+import RequestFlow from '../components/RequestFlow';
+import { services } from '../content/services';
+import { homeFaqs } from '../content/faqs';
+import { serviceAreaGuidance, serviceAreaGroups } from '../content/areas';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Reliable Home Comfort, Without the Runaround"
+  description={siteConfig.description}
+  path="/"
+>
+  <section class="portfolio-notice">
+    <div class="container-nl">
+      <p>
+        <strong>Portfolio concept by Che Xu Studio.</strong>
+        NorthLine Home Services is a fictional demonstration of a conversion-focused contractor website.
+        It is not a real operating company.
+      </p>
+    </div>
+  </section>
+
+  <section class="hero-plane hero">
+    <div class="container-nl hero__grid">
+      <div class="reveal">
+        <p class="eyebrow" style="color:#F5A623;">Home Comfort Services</p>
+        <h1 class="display hero__title">Reliable Home Comfort, Without the Runaround.</h1>
+        <p class="hero__support">
+          A clear, mobile-first service experience designed to help homeowners understand their
+          options and request help in minutes.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn btn-primary" href="/request-service">Request Service</a>
+          <a class="btn btn-secondary hero__secondary" href="/services">Explore Services</a>
+          <button type="button" class="btn btn-accent" data-open-lead
+            >Build a Website Like This</button
+          >
+        </div>
+        <ul class="hero__reassurance">
+          <li>Clear service options</li>
+          <li>Convenient scheduling patterns</li>
+          <li>Mobile-friendly experience</li>
+          <li>Straightforward next steps</li>
+        </ul>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__panel">
+          <svg viewBox="0 0 480 360" role="presentation" class="hero__illustration">
+            <rect width="480" height="360" rx="28" fill="#123352"></rect>
+            <rect x="36" y="40" width="250" height="18" rx="9" fill="#176BFF" opacity="0.9"></rect>
+            <rect x="36" y="78" width="180" height="12" rx="6" fill="#EAF3FF" opacity="0.35"></rect>
+            <rect x="36" y="120" width="190" height="90" rx="18" fill="#0B1F33"></rect>
+            <rect x="246" y="120" width="190" height="90" rx="18" fill="#0B1F33"></rect>
+            <rect x="36" y="230" width="400" height="70" rx="18" fill="#176BFF" opacity="0.25"
+            ></rect>
+            <circle cx="390" cy="70" r="34" fill="#F5A623" opacity="0.9"></circle>
+            <path
+              d="M120 165h40M140 145v40"
+              stroke="#F5A623"
+              stroke-width="8"
+              stroke-linecap="round"></path>
+            <path
+              d="M320 145c20 10 40 10 60 0M330 175h50"
+              stroke="#EAF3FF"
+              stroke-width="6"
+              stroke-linecap="round"></path>
+          </svg>
+          <p>Designed to turn local searches into qualified enquiries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-nl" aria-labelledby="services-chooser">
+    <div class="container-nl">
+      <p class="eyebrow">Service chooser</p>
+      <h2 id="services-chooser" class="display section-title">What Can We Help With?</h2>
+      <p class="lead">Four clear service paths with explore and request actions on every card.</p>
+      <div class="grid-services" style="margin-top:1.5rem;">
+        {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-nl process" aria-labelledby="process-title">
+    <div class="container-nl">
+      <p class="eyebrow">Trust through process</p>
+      <h2 id="process-title" class="display section-title">
+        A Better Service Experience Starts With Clarity.
+      </h2>
+      <p class="lead">
+        This is a demonstration of the customer journey—not a claim about real dispatch times or
+        guarantees.
+      </p>
+      <ol class="process__steps">
+        <li>
+          <strong>Tell us what you need</strong><span
+            >Choose a service category in plain language.</span
+          >
+        </li>
+        <li>
+          <strong>Choose a convenient time</strong><span
+            >Share timing preferences without fake urgency.</span
+          >
+        </li>
+        <li>
+          <strong>Review your request</strong><span
+            >Confirm details before any real submission.</span
+          >
+        </li>
+        <li>
+          <strong>Receive confirmation</strong><span
+            >See how reassurance and next steps can look.</span
+          >
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-nl conversion" aria-labelledby="conversion-title">
+    <div class="container-nl conversion__panel surface">
+      <p class="eyebrow">For business owners</p>
+      <h2 id="conversion-title" class="display section-title">
+        Designed to Turn Local Searches Into Qualified Enquiries.
+      </h2>
+      <ul class="conversion__list">
+        <li>Clear service navigation</li>
+        <li>Mobile conversion actions</li>
+        <li>Local-search page architecture</li>
+        <li>Guided quote requests</li>
+        <li>Fast-loading pages</li>
+        <li>Accessible forms</li>
+        <li>Conversion analytics without personal data</li>
+        <li>Structured service information</li>
+      </ul>
+      <button type="button" class="btn btn-accent" data-open-lead
+        >I Want This for My Business</button
+      >
+    </div>
+  </section>
+
+  <section class="section-nl" aria-labelledby="highlights-title">
+    <div class="container-nl">
+      <p class="eyebrow">Service highlights</p>
+      <h2 id="highlights-title" class="display section-title">
+        Benefit-focused service storytelling.
+      </h2>
+      <div class="highlights">
+        {
+          services.map((service) => (
+            <article>
+              <h3>{service.name}</h3>
+              <p>{service.summary}</p>
+              <a href={`/services/${service.slug}`}>Explore {service.shortName}</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-nl" aria-labelledby="demo-request-title">
+    <div class="container-nl">
+      <p class="eyebrow">Service-request demonstration</p>
+      <h2 id="demo-request-title" class="sr-only">Try the request flow</h2>
+      <RequestFlow client:visible compact />
+    </div>
+  </section>
+
+  <section class="section-nl areas" aria-labelledby="areas-title">
+    <div class="container-nl">
+      <p class="eyebrow">Service-area architecture</p>
+      <h2 id="areas-title" class="display section-title">{serviceAreaGuidance.heading}</h2>
+      <p class="lead">{serviceAreaGuidance.intro}</p>
+      <div class="areas__grid">
+        {
+          serviceAreaGroups.map((group) => (
+            <article class="surface">
+              <h3>{group.name}</h3>
+              <p>{group.summary}</p>
+              <p>
+                <strong>Example communities:</strong> {group.exampleCommunities.join(', ')}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="areas__note">{serviceAreaGuidance.templateNote}</p>
+      <a class="btn btn-secondary" href="/service-areas">See service-area approach</a>
+    </div>
+  </section>
+
+  <FaqList faqs={homeFaqs} />
+
+  <section class="section-nl final-cta" aria-labelledby="final-cta-title" id="case-study-copy">
+    <div class="container-nl final-cta__panel">
+      <p class="eyebrow" style="color:#F5A623;">Che Xu Studio</p>
+      <h2 id="final-cta-title" class="display">
+        Imagine This Conversion System Built for Your Business.
+      </h2>
+      <p>
+        Che Xu Studio designs fast, search-ready websites that make it easier for customers to
+        understand your services, trust your business and take the next step.
+      </p>
+      <div class="final-cta__actions">
+        <button type="button" class="btn btn-accent" data-open-lead>Get My Website Plan</button>
+        <a class="btn btn-secondary" href={siteConfig.cheXu.packagesUrl}
+          >View Che Xu Studio Packages</a
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('[data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', { detail: { source: 'homepage' } }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .portfolio-notice {
+    background: #eaf3ff;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.85rem 0;
+  }
+  .portfolio-notice p {
+    margin: 0;
+    color: var(--color-charcoal);
+  }
+  .hero {
+    padding: clamp(3rem, 7vw, 5.5rem) 0;
+  }
+  .hero__grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .hero__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+    }
+  }
+  .hero__title {
+    color: #fff;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    margin: 0.5rem 0 1rem;
+  }
+  .hero__support {
+    color: rgb(255 255 255 / 0.88);
+    font-size: 1.15rem;
+    max-width: 36rem;
+  }
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 1.4rem 0 1.25rem;
+  }
+  .hero__secondary {
+    background: rgb(255 255 255 / 0.1);
+    color: #fff;
+    border-color: rgb(255 255 255 / 0.35);
+  }
+  .hero__reassurance {
+    display: grid;
+    gap: 0.45rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    color: rgb(255 255 255 / 0.9);
+  }
+  .hero__reassurance li::before {
+    content: '✓';
+    color: #f5a623;
+    font-weight: 700;
+    margin-right: 0.5rem;
+  }
+  .hero__panel {
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: 1.5rem;
+    padding: 1rem;
+  }
+  .hero__illustration {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+  .hero__panel p {
+    margin: 0.85rem 0 0.25rem;
+    color: rgb(255 255 255 / 0.85);
+  }
+  .section-title {
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    margin: 0.35rem 0 0.75rem;
+  }
+  .process {
+    background: rgb(234 243 255 / 0.55);
+  }
+  .process__steps {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+  @media (min-width: 768px) {
+    .process__steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .process__steps li {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    display: grid;
+    gap: 0.35rem;
+  }
+  .process__steps strong {
+    color: var(--color-midnight);
+  }
+  .process__steps span {
+    color: var(--color-muted);
+  }
+  .conversion__panel {
+    padding: 1.5rem;
+  }
+  .conversion__list {
+    display: grid;
+    gap: 0.45rem 1rem;
+    margin: 1rem 0 1.25rem;
+    padding-left: 1.1rem;
+  }
+  @media (min-width: 768px) {
+    .conversion__list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .highlights {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .highlights {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .highlights article {
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .highlights h3 {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-display);
+    color: var(--color-midnight);
+  }
+  .highlights p {
+    margin: 0 0 0.6rem;
+    color: var(--color-muted);
+  }
+  .highlights a {
+    color: var(--color-trust-dark);
+    font-weight: 700;
+  }
+  .areas__grid {
+    display: grid;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  @media (min-width: 768px) {
+    .areas__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .areas__grid article {
+    padding: 1rem;
+  }
+  .areas__grid h3 {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    color: var(--color-midnight);
+  }
+  .areas__note {
+    color: var(--color-muted);
+    max-width: 48rem;
+  }
+  .final-cta__panel {
+    background: var(--color-midnight);
+    color: #fff;
+    border-radius: 1.5rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .final-cta__panel .display {
+    color: #fff;
+    margin: 0.4rem 0 0.85rem;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+  }
+  .final-cta__panel p {
+    color: rgb(255 255 255 / 0.85);
+    max-width: 42rem;
+  }
+  .final-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+  }
+  .final-cta__actions .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgb(255 255 255 / 0.35);
+  }
+</style>

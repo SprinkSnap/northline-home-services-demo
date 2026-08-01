@@ -1,0 +1,50 @@
+---
+
+---
+
+<div class="mobile-action-bar" role="navigation" aria-label="Mobile quick actions">
+  <a href="/services">Services</a>
+  <a class="is-primary" href="/request-service">Request Service</a>
+  <button type="button" data-open-lead>Build My Website</button>
+</div>
+
+<script>
+  document.body.classList.add('has-mobile-actions');
+  document.querySelectorAll('.mobile-action-bar [data-open-lead]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('northline:open-lead-drawer', {
+          detail: { source: 'mobile_action_bar' },
+        }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .mobile-action-bar a,
+  .mobile-action-bar button {
+    min-height: 44px;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    color: var(--color-midnight);
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.4rem;
+    cursor: pointer;
+  }
+  .mobile-action-bar .is-primary {
+    background: var(--color-trust);
+    border-color: var(--color-trust);
+    color: var(--color-white);
+  }
+  .mobile-action-bar button {
+    background: var(--color-amber);
+    border-color: var(--color-amber);
+  }
+</style>

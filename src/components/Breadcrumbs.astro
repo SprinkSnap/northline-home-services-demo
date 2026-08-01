@@ -1,0 +1,59 @@
+---
+import { breadcrumbJsonLd } from '../lib/seo';
+
+interface Crumb {
+  name: string;
+  path: string;
+}
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+const json = breadcrumbJsonLd(items);
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol>
+    {
+      items.map((item, index) => (
+        <li>
+          {index < items.length - 1 ? (
+            <a href={item.path}>{item.name}</a>
+          ) : (
+            <span aria-current="page">{item.name}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script is:inline type="application/ld+json" set:html={JSON.stringify(json)} />
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 1.25rem;
+  }
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+  li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    opacity: 0.6;
+  }
+  a {
+    color: var(--color-trust-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  a:hover {
+    color: var(--color-midnight);
+  }
+</style>

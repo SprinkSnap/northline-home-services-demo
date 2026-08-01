@@ -1,0 +1,44 @@
+---
+interface Props {
+  name: 'heating' | 'plumbing' | 'electrical' | 'maintenance';
+}
+const { name } = Astro.props;
+---
+
+<svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {
+    name === 'heating' && (
+      <>
+        <path d="M12 3v10" />
+        <path d="M8 7c2 2 6 2 8 0" />
+        <path d="M7 14a5 5 0 0 0 10 0" />
+        <path d="M9 21h6" />
+      </>
+    )
+  }
+  {
+    name === 'plumbing' && (
+      <>
+        <path d="M6 8h8a3 3 0 0 1 0 6H9" />
+        <path d="M9 14v4a2 2 0 0 0 2 2h1" />
+        <path d="M6 8V6a2 2 0 0 1 2-2h2" />
+      </>
+    )
+  }
+  {name === 'electrical' && <path d="M13 2 6 13h5l-1 9 8-12h-5l0-8z" />}
+  {
+    name === 'maintenance' && (
+      <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5 2.5-2.5z" />
+    )
+  }
+</svg>

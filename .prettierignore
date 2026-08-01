@@ -1,0 +1,11 @@
+dist
+.astro
+.wrangler
+.wrangler-dry-run
+node_modules
+coverage
+playwright-report
+test-results
+package-lock.json
+CHANGELOG.md
+worker-configuration.d.ts
