@@ -15,14 +15,21 @@
   "observability": {
     "enabled": true,
   },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "northline-portfolio-leads",
-      "database_id": "00000000-0000-0000-0000-000000000000",
-      "migrations_dir": "migrations",
-    },
-  ],
+  // D1 is optional for the marketing site deploy.
+  // A placeholder database_id causes Cloudflare deploy to fail with code 10181.
+  // After creating a real database, uncomment and set the real database_id:
+  //
+  //   npx wrangler d1 create northline-portfolio-leads
+  //   npx wrangler d1 migrations apply northline-portfolio-leads --remote
+  //
+  // "d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "northline-portfolio-leads",
+  //     "database_id": "REPLACE_WITH_REAL_D1_DATABASE_ID",
+  //     "migrations_dir": "migrations"
+  //   }
+  // ],
   // Optional Workers AI binding for the demo assistant.
   // Uncomment when deploying to an account with Workers AI enabled:
   // "ai": { "binding": "AI" },

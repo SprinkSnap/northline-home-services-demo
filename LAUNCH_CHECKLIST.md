@@ -55,8 +55,10 @@
 
 ## Cloudflare
 
-- [ ] `wrangler.jsonc` database id replaced
-- [ ] D1 binding verified
+- [ ] D1 database created (`npx wrangler d1 create northline-portfolio-leads`)
+- [ ] Real D1 `database_id` uncommented in `wrangler.jsonc` (no placeholder UUID)
+- [ ] D1 migrations applied remotely
+- [ ] D1 binding verified after redeploy
 - [ ] AI binding optional but documented
 - [ ] Edge rate limiting configured for `/api/*`
 - [ ] Workers Builds **Build command** = `npm run build`
