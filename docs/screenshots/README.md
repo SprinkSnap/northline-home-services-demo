@@ -5,26 +5,30 @@ Recommended frames for the Che Xu Studio case study (`CASE_STUDY_COPY.md`).
 | Viewport | Size | Path | Regen |
 |----------|------|------|-------|
 | Mobile | 390×844 @2x | [`mobile/`](./mobile/) | `npm run screenshots:mobile` |
+| Tablet | 768×1024 @2x | [`tablet/`](./tablet/) | `npm run screenshots:tablet` |
 | Desktop | 1440×900 | [`desktop/`](./desktop/) | `npm run screenshots:desktop` |
 
-Run both: `npm run screenshots` (requires preview on `http://127.0.0.1:4321`).
+Run all: `npm run screenshots` (requires preview on `http://127.0.0.1:4321`).
 
 ## Recommended set
 
-Same six story beats on both viewports (desktop replaces the mobile sticky bar with header chrome):
+Same six story beats across viewports:
 
-| # | Story beat | Mobile | Desktop |
-|---|------------|--------|---------|
-| 1 | Homepage hero | `01-homepage-hero.png` | `01-homepage-hero.png` |
-| 1b | Service chooser | `01b-homepage-service-chooser.png` | `01b-homepage-service-chooser.png` |
-| 2 | Conversion chrome | `02-mobile-sticky-action-bar.png` | `02-desktop-header-chrome.png` |
-| 3 | Guided request flow | `03-guided-request-flow.png` | `03-guided-request-flow.png` |
-| 3b | Request-type step | `03b-guided-request-flow-step.png` | `03b-guided-request-flow-step.png` |
-| 4 | Service page template | `04-service-page-template.png` | `04-service-page-template.png` |
-| 5 | Service-area architecture | `05-service-area-architecture.png` | `05-service-area-architecture.png` |
-| 6 | Che Xu lead drawer | `06-che-xu-lead-drawer.png` | `06-che-xu-lead-drawer.png` |
+| # | Story beat | Mobile | Tablet | Desktop |
+|---|------------|--------|--------|---------|
+| 1 | Homepage hero | `01-homepage-hero.png` | `01-homepage-hero.png` | `01-homepage-hero.png` |
+| 1b | Service chooser | `01b-…` | `01b-…` | `01b-…` |
+| 2 | Conversion chrome | sticky action bar | sticky action bar | header nav + CTAs |
+| 3 | Guided request flow | `03-…` | `03-…` | `03-…` |
+| 3b | Request-type step | `03b-…` | `03b-…` | `03b-…` |
+| 4 | Service page template | `04-…` | `04-…` | `04-…` |
+| 5 | Service-area architecture | `05-…` | `05-…` | `05-…` |
+| 6 | Che Xu lead drawer | `06-…` | `06-…` | `06-…` |
 
-Supplemental crops and mid-page frames (`*b`, `01c-homepage-full.png`) are included for galleries.
+Notes:
+
+- **Tablet (768)** still uses hamburger nav + sticky action bar (desktop chrome starts at **1024px**).
+- Supplemental crops and mid-page frames (`*b`, `01c-homepage-full.png`) are included for galleries.
 
 ## Capture notes
 

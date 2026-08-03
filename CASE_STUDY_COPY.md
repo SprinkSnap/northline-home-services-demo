@@ -70,12 +70,21 @@ The only live lead form submits to Che Xu Studio via `/api/portfolio-lead` with 
 
 ### Screenshots
 
-Recommended captures live in [`docs/screenshots/`](./docs/screenshots/). Regenerate with `npm run screenshots:mobile`, `npm run screenshots:desktop`, or `npm run screenshots` (see [`docs/screenshots/README.md`](./docs/screenshots/README.md)).
+Recommended captures live in [`docs/screenshots/`](./docs/screenshots/). Regenerate with `npm run screenshots:mobile`, `npm run screenshots:tablet`, `npm run screenshots:desktop`, or `npm run screenshots` (see [`docs/screenshots/README.md`](./docs/screenshots/README.md)).
 
 **Mobile (390×844 @2x)** — `docs/screenshots/mobile/`
 
 1. Homepage hero and service chooser — `01-homepage-hero.png`, `01b-homepage-service-chooser.png`
 2. Mobile sticky action bar — `02-mobile-sticky-action-bar.png`
+3. Guided request flow — `03-guided-request-flow.png`, `03b-guided-request-flow-step.png`
+4. Service page template — `04-service-page-template.png`
+5. Service-area architecture section — `05-service-area-architecture.png`, `05b-service-area-groupings.png`
+6. Che Xu Studio lead drawer — `06-che-xu-lead-drawer.png`
+
+**Tablet (768×1024 @2x)** — `docs/screenshots/tablet/`
+
+1. Homepage hero and service chooser — `01-homepage-hero.png`, `01b-homepage-service-chooser.png`
+2. Sticky action bar (still present below 1024px) — `02-tablet-sticky-action-bar.png`
 3. Guided request flow — `03-guided-request-flow.png`, `03b-guided-request-flow-step.png`
 4. Service page template — `04-service-page-template.png`
 5. Service-area architecture section — `05-service-area-architecture.png`, `05b-service-area-groupings.png`
