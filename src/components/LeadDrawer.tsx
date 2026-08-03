@@ -268,7 +268,8 @@ export default function LeadDrawer({
       </div>
 
       <style>{`
-        .lead-drawer { position: fixed; inset: 0; z-index: 90; }
+        /* Above sticky .site-chrome (200) so the drawer title/close stay visible on mobile. */
+        .lead-drawer { position: fixed; inset: 0; z-index: 5000; }
         .lead-drawer__backdrop {
           position: absolute; inset: 0; background: rgb(11 31 51 / 0.5);
         }

@@ -185,6 +185,8 @@ If the `AI` binding is available, `/api/assistant` uses `@cf/meta/llama-3.1-8b-i
 
 This repository is the standalone NorthLine demo. Finished Che Xu Studio case-study copy lives in [`CASE_STUDY_COPY.md`](./CASE_STUDY_COPY.md) for publishing on an indexable `/work/northline-home-services` page in the Che Xu Studio site.
 
+Recommended mobile screenshots (390×844) are in [`docs/screenshots/mobile/`](./docs/screenshots/mobile/). Regenerate with `npm run screenshots:mobile` while preview is running.
+
 ## Production conversion from demo to real client
 
 1. Collect verified NAP, hours, service areas, licences, insurance notes, and social profiles.
