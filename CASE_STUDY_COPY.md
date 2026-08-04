@@ -16,6 +16,47 @@ Use this finished copy on the indexable Che Xu Studio page:
 
 **Label:** Concept Project — Created to demonstrate Che Xu Studio’s design, SEO and conversion capabilities.
 
+### Desktop view · Mobile responsive · Conversion & SEO
+
+Use the responsive mockups from `siteConfig.caseStudy.images` (`/images/case-study/desktop-homepage.png` and `/images/case-study/mobile-homepage.png`), then the brief below.
+
+#### Client Industry
+
+**Home Services**
+
+A residential home services business providing reliable solutions for homeowners, with a focus on making it easy to request services and connect with the company.
+
+#### Project Goal
+
+Design and develop a modern, conversion-focused website that builds trust, improves user experience, supports local SEO, and encourages visitors to become qualified leads through clear calls to action and a mobile-first experience.
+
+#### My Role
+
+- UX Research & Strategy
+- Information Architecture
+- UI/Visual Design
+- Responsive Web Design
+- WordPress Development
+- Technical SEO Implementation
+- Performance Optimization
+- Accessibility Best Practices
+
+#### Technologies Used
+
+- WordPress
+- PHP
+- HTML5
+- CSS3
+- JavaScript
+- Responsive Design
+- Technical SEO
+- Performance Optimization
+- Accessibility (WCAG)
+- Google Fonts
+- SVG Icons
+
+**Disclosure:** NorthLine Home Services is a fictional demonstration. Present this work honestly as a portfolio concept, practice project, or demonstration project unless it becomes a real client project. Avoid implying it was built for an actual client.
+
 ### Project overview
 
 NorthLine Home Services is a fictional contractor website concept created by Che Xu Studio. It shows how a home-services business can present services clearly, guide mobile visitors into a request flow, and prepare for responsible local SEO—without relying on pressure tactics or fabricated trust signals.
