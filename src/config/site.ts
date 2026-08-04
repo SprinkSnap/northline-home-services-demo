@@ -35,6 +35,51 @@ export const siteConfig = {
   turnstile: {
     siteKey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '',
   },
+  /**
+   * Case-study brief shown below the desktop / mobile responsive mockup
+   * (conversion & SEO section) on the Che Xu Studio portfolio page.
+   * NorthLine is a fictional demonstration — not a real client project.
+   */
+  caseStudy: {
+    sectionTitle: 'Desktop view · Mobile responsive · Conversion & SEO',
+    presentation: 'portfolio-concept' as const,
+    images: {
+      desktop: '/images/case-study/desktop-homepage.png',
+      mobile: '/images/case-study/mobile-homepage.png',
+    },
+    clientIndustry: {
+      title: 'Home Services',
+      description:
+        'A residential home services business providing reliable solutions for homeowners, with a focus on making it easy to request services and connect with the company.',
+    },
+    projectGoal:
+      'Design and develop a modern, conversion-focused website that builds trust, improves user experience, supports local SEO, and encourages visitors to become qualified leads through clear calls to action and a mobile-first experience.',
+    role: [
+      'UX Research & Strategy',
+      'Information Architecture',
+      'UI/Visual Design',
+      'Responsive Web Design',
+      'WordPress Development',
+      'Technical SEO Implementation',
+      'Performance Optimization',
+      'Accessibility Best Practices',
+    ],
+    technologies: [
+      'WordPress',
+      'PHP',
+      'HTML5',
+      'CSS3',
+      'JavaScript',
+      'Responsive Design',
+      'Technical SEO',
+      'Performance Optimization',
+      'Accessibility (WCAG)',
+      'Google Fonts',
+      'SVG Icons',
+    ],
+    disclosure:
+      'NorthLine Home Services is a fictional demonstration. Present this work honestly as a portfolio concept, practice project, or demonstration project unless it becomes a real client project. Avoid implying it was built for an actual client.',
+  },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
