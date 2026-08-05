@@ -8,7 +8,7 @@
 | `public/images/og-northline.svg`                           | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Social sharing image                   |
 | `public/images/case-study/desktop-homepage.png`            | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study desktop mockup              |
 | `public/images/case-study/mobile-homepage.png`             | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study mobile mockup               |
-| Inline hero SVG on homepage                                | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Decorative illustration                |
+| `public/images/local-searches-qualified-enquiries.png`     | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Homepage hero conversion infographic   |
 | Icon set in `src/components/icons` and `ServiceIcon.astro` | Original stroke icons                     | All rights reserved (demo use) | Not copied from a commercial icon pack |
 
 ## Fonts
