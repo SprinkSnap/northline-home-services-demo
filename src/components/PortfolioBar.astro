@@ -1,5 +1,5 @@
 ---
-
+import { siteConfig } from '../config/site';
 ---
 
 <div
@@ -17,7 +17,7 @@
     <div class="portfolio-bar__actions">
       <a
         class="btn btn-secondary portfolio-bar__btn"
-        href="#case-study-copy"
+        href={siteConfig.cheXu.caseStudyUrl}
         data-analytics="case_study_selected"
       >
         View Case Study
