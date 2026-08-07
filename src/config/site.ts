@@ -20,7 +20,7 @@ export const siteConfig = {
   cheXu: {
     name: 'Che Xu Studio',
     url: import.meta.env.PUBLIC_CHEXU_URL ?? 'https://chexustudio.com',
-    packagesUrl: import.meta.env.PUBLIC_CHEXU_PACKAGES_URL ?? 'https://chexustudio.com/packages',
+    packagesUrl: import.meta.env.PUBLIC_CHEXU_PACKAGES_URL ?? 'https://chexustudio.com/pricing/',
     caseStudyUrl:
       import.meta.env.PUBLIC_CASE_STUDY_URL ?? 'https://chexustudio.com/work/',
     email: import.meta.env.PUBLIC_CHEXU_EMAIL ?? 'hello@chexustudio.com',

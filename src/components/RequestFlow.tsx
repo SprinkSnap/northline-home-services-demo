@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { siteConfig } from '../config/site';
 import { trackEvent } from '../lib/analytics';
 import {
   assertDemoRequestNotTransmitted,
@@ -70,7 +71,7 @@ export default function RequestFlow({ compact = false }: { compact?: boolean }) 
           </button>
           <a
             className="btn btn-secondary"
-            href="https://chexustudio.com/packages"
+            href={siteConfig.cheXu.packagesUrl}
             onClick={() => trackEvent('package_link_selected', { location: 'request_complete' })}
           >
             View Che Xu Studio Packages
