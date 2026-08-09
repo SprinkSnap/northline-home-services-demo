@@ -280,20 +280,14 @@ import { siteConfig } from '../config/site';
     animation: hero-zoom 12s ease-out both;
   }
   .hero__shade {
-    background:
-      linear-gradient(
-        180deg,
-        rgb(8 22 38 / 0.28) 0%,
-        rgb(8 22 38 / 0.48) 30%,
-        rgb(8 22 38 / 0.72) 55%,
-        rgb(8 22 38 / 0.9) 100%
-      ),
-      radial-gradient(
-        130% 80% at 50% 72%,
-        rgb(8 22 38 / 0.7) 0%,
-        rgb(8 22 38 / 0.35) 45%,
-        transparent 72%
-      );
+    /* Keep the upper house visible; darken only toward the copy */
+    background: linear-gradient(
+      180deg,
+      rgb(8 22 38 / 0.12) 0%,
+      rgb(8 22 38 / 0.22) 38%,
+      rgb(8 22 38 / 0.55) 68%,
+      rgb(8 22 38 / 0.8) 100%
+    );
   }
   .hero__grid {
     width: 100%;
@@ -303,24 +297,13 @@ import { siteConfig } from '../config/site';
     padding-bottom: 1.5rem;
   }
   .hero__copy {
-    position: relative;
-    z-index: 1;
     max-width: 38rem;
     width: 100%;
-  }
-  .hero__copy::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: -2.25rem -1.5rem -2.5rem;
-    background: rgb(8 22 38 / 0.72);
-    filter: blur(34px);
-    pointer-events: none;
   }
   .hero__eyebrow {
     color: #f5a623;
     letter-spacing: 0.1em;
-    text-shadow: 0 1px 10px rgb(8 22 38 / 0.55);
+    text-shadow: 0 1px 8px rgb(8 22 38 / 0.55);
   }
   .hero__title {
     color: #fff;
@@ -329,8 +312,8 @@ import { siteConfig } from '../config/site';
     line-height: 1.08;
     text-wrap: balance;
     text-shadow:
-      0 1px 2px rgb(8 22 38 / 0.65),
-      0 2px 22px rgb(8 22 38 / 0.7);
+      0 1px 2px rgb(8 22 38 / 0.7),
+      0 4px 24px rgb(8 22 38 / 0.75);
     animation: rise-in 700ms ease both;
   }
   .hero__support {
@@ -339,8 +322,8 @@ import { siteConfig } from '../config/site';
     line-height: 1.55;
     max-width: 34rem;
     text-shadow:
-      0 1px 2px rgb(8 22 38 / 0.6),
-      0 2px 16px rgb(8 22 38 / 0.65);
+      0 1px 2px rgb(8 22 38 / 0.65),
+      0 3px 18px rgb(8 22 38 / 0.7);
     animation: rise-in 850ms ease both;
   }
   .hero__trust {
@@ -351,7 +334,7 @@ import { siteConfig } from '../config/site';
     margin: 1.4rem 0 0;
     list-style: none;
     color: #fff;
-    text-shadow: 0 1px 10px rgb(8 22 38 / 0.45);
+    text-shadow: 0 1px 12px rgb(8 22 38 / 0.55);
   }
   .hero__trust li {
     display: grid;
@@ -466,19 +449,15 @@ import { siteConfig } from '../config/site';
     .hero__shade {
       background: linear-gradient(
         90deg,
-        rgb(8 22 38 / 0.97) 0%,
-        rgb(8 22 38 / 0.94) 26%,
-        rgb(11 31 51 / 0.88) 42%,
-        rgb(11 31 51 / 0.55) 56%,
-        rgb(11 31 51 / 0.18) 68%,
-        transparent 82%
+        rgb(8 22 38 / 0.92) 0%,
+        rgb(11 31 51 / 0.82) 28%,
+        rgb(11 31 51 / 0.45) 46%,
+        rgb(11 31 51 / 0.14) 62%,
+        transparent 78%
       );
     }
     .hero__copy {
       max-width: 34rem;
-    }
-    .hero__copy::before {
-      display: none;
     }
     .hero__trust {
       max-width: 30rem;
