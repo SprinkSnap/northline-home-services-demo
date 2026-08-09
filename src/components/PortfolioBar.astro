@@ -11,12 +11,22 @@ import { siteConfig } from '../config/site';
 >
   <div class="portfolio-bar__inner">
     <p id="portfolio-bar-label" class="portfolio-bar__copy">
-      <strong>Portfolio concept by Che Xu Studio.</strong>
-      Conversion-focused home-services website concept. NorthLine Home Services is a fictional demonstration.
+      <span class="portfolio-bar__rocket" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3c2.5 2 4 5.2 4 9.2 0 1.4-.2 2.7-.6 3.8L12 21l-3.4-5c-.4-1.1-.6-2.4-.6-3.8C8 8.2 9.5 5 12 3z"></path>
+          <path d="M9.2 14.5 5 16.2l1.5-3.8M14.8 14.5 19 16.2l-1.5-3.8"></path>
+          <circle cx="12" cy="10" r="1.2"></circle>
+        </svg>
+      </span>
+      <span>
+        <strong>Portfolio concept by Che Xu Studio.</strong>
+        Conversion-focused home-services website concept. NorthLine Home Services is a fictional
+        demonstration.
+      </span>
     </p>
     <div class="portfolio-bar__actions">
       <a
-        class="btn btn-secondary portfolio-bar__btn"
+        class="btn portfolio-bar__btn portfolio-bar__btn--case"
         href={siteConfig.cheXu.caseStudyUrl}
         data-analytics="case_study_selected"
       >
@@ -86,6 +96,15 @@ import { siteConfig } from '../config/site';
     font-size: 0.85rem;
     line-height: 1.35;
     max-width: 46rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+  .portfolio-bar__rocket {
+    color: #f5a623;
+    display: inline-flex;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
   }
   .portfolio-bar__actions {
     display: flex;
@@ -97,6 +116,15 @@ import { siteConfig } from '../config/site';
     min-height: 40px;
     padding: 0.4rem 0.75rem;
     font-size: 0.85rem;
+  }
+  .portfolio-bar__btn--case {
+    background: #fff;
+    color: #0b1f33;
+    border-color: #fff;
+  }
+  .portfolio-bar__btn--case:hover,
+  .portfolio-bar__btn--case:focus-visible {
+    background: #eaf3ff;
   }
   .portfolio-bar__dismiss {
     min-height: 40px;
