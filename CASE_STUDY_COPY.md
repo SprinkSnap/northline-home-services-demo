@@ -16,9 +16,15 @@ Use this finished copy on the indexable Che Xu Studio page:
 
 **Label:** Concept Project — Created to demonstrate Che Xu Studio’s design, SEO and conversion capabilities.
 
-### Desktop view · Mobile responsive · Conversion & SEO
+### Desktop view · Tablet · Mobile responsive · Conversion & SEO
 
-Use the responsive mockups from `siteConfig.caseStudy.images` (`/images/case-study/desktop-homepage.png` and `/images/case-study/mobile-homepage.png`), then the brief below.
+Use the best one-per-breakpoint mockups from `siteConfig.caseStudy.images`:
+
+- Desktop — `/images/case-study/desktop-homepage.png` (1440×900 @2x)
+- Tablet — `/images/case-study/tablet-homepage.png` (768×1024 @2x)
+- Mobile — `/images/case-study/mobile-homepage.png` (390×844 @2x)
+
+Regenerate with `npm run screenshots:case-study`. Then the brief below.
 
 #### Client Industry
 
@@ -111,12 +117,29 @@ The only live lead form submits to Che Xu Studio via `/api/portfolio-lead` with 
 
 ### Screenshots
 
-Recommended captures live in [`docs/screenshots/`](./docs/screenshots/). Regenerate with `npm run screenshots:mobile`, `npm run screenshots:desktop`, or `npm run screenshots` (see [`docs/screenshots/README.md`](./docs/screenshots/README.md)).
+**Best one per breakpoint (work-page mockups)** — regenerate with `npm run screenshots:case-study`:
+
+| Breakpoint | File |
+| ---------- | ---- |
+| Desktop | `public/images/case-study/desktop-homepage.png` |
+| Tablet | `public/images/case-study/tablet-homepage.png` |
+| Mobile | `public/images/case-study/mobile-homepage.png` |
+
+Full recommended sets live in [`docs/screenshots/`](./docs/screenshots/). Regenerate with `npm run screenshots:mobile`, `npm run screenshots:tablet`, `npm run screenshots:desktop`, or `npm run screenshots` (see [`docs/screenshots/README.md`](./docs/screenshots/README.md)).
 
 **Mobile (390×844 @2x)** — `docs/screenshots/mobile/`
 
 1. Homepage hero and service chooser — `01-homepage-hero.png`, `01b-homepage-service-chooser.png`
 2. Mobile sticky action bar — `02-mobile-sticky-action-bar.png`
+3. Guided request flow — `03-guided-request-flow.png`, `03b-guided-request-flow-step.png`
+4. Service page template — `04-service-page-template.png`
+5. Service-area architecture section — `05-service-area-architecture.png`, `05b-service-area-groupings.png`
+6. Che Xu Studio lead drawer — `06-che-xu-lead-drawer.png`
+
+**Tablet (768×1024 @2x)** — `docs/screenshots/tablet/`
+
+1. Homepage hero and service chooser — `01-homepage-hero.png`, `01b-homepage-service-chooser.png`
+2. Tablet conversion chrome / sticky actions — `02-*.png`
 3. Guided request flow — `03-guided-request-flow.png`, `03b-guided-request-flow-step.png`
 4. Service page template — `04-service-page-template.png`
 5. Service-area architecture section — `05-service-area-architecture.png`, `05b-service-area-groupings.png`
