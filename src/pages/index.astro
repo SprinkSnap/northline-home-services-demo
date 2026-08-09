@@ -268,28 +268,31 @@ import { siteConfig } from '../config/site';
   .hero__shade {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
   }
   .hero__photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 40% center;
+    object-position: 45% center;
     display: block;
-    filter: brightness(1.14) contrast(1.06) saturate(1.12);
+    /* PNG is already brightened — avoid blowing out the facade */
+    filter: brightness(1.03) contrast(1.04) saturate(1.06);
     animation: hero-zoom 12s ease-out both;
   }
   .hero__shade {
     /* Keep the upper house visible; darken only toward the copy */
     background: linear-gradient(
       180deg,
-      rgb(8 22 38 / 0.12) 0%,
-      rgb(8 22 38 / 0.22) 38%,
-      rgb(8 22 38 / 0.55) 68%,
-      rgb(8 22 38 / 0.8) 100%
+      rgb(8 22 38 / 0.08) 0%,
+      rgb(8 22 38 / 0.18) 42%,
+      rgb(8 22 38 / 0.48) 70%,
+      rgb(8 22 38 / 0.72) 100%
     );
   }
   .hero__grid {
+    position: relative;
+    z-index: 1;
     width: 100%;
     flex: 1;
     display: flex;
@@ -443,17 +446,17 @@ import { siteConfig } from '../config/site';
       padding-bottom: 2.25rem;
     }
     .hero__photo {
-      object-position: 72% center;
-      filter: brightness(1.16) contrast(1.07) saturate(1.14);
+      object-position: 58% center;
+      filter: brightness(1.04) contrast(1.05) saturate(1.08);
     }
     .hero__shade {
       background: linear-gradient(
         90deg,
-        rgb(8 22 38 / 0.92) 0%,
-        rgb(11 31 51 / 0.82) 28%,
-        rgb(11 31 51 / 0.45) 46%,
-        rgb(11 31 51 / 0.14) 62%,
-        transparent 78%
+        rgb(8 22 38 / 0.9) 0%,
+        rgb(11 31 51 / 0.72) 24%,
+        rgb(11 31 51 / 0.32) 42%,
+        rgb(11 31 51 / 0.08) 58%,
+        transparent 72%
       );
     }
     .hero__copy {
