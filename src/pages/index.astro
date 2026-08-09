@@ -276,15 +276,16 @@ import { siteConfig } from '../config/site';
     object-fit: cover;
     object-position: 40% center;
     display: block;
+    filter: brightness(1.14) contrast(1.06) saturate(1.12);
     animation: hero-zoom 12s ease-out both;
   }
   .hero__shade {
     background: linear-gradient(
       180deg,
-      rgb(8 22 38 / 0.4) 0%,
-      rgb(8 22 38 / 0.58) 35%,
-      rgb(8 22 38 / 0.86) 70%,
-      rgb(8 22 38 / 0.95) 100%
+      rgb(8 22 38 / 0.1) 0%,
+      rgb(8 22 38 / 0.2) 28%,
+      rgb(8 22 38 / 0.42) 58%,
+      rgb(8 22 38 / 0.68) 100%
     );
   }
   .hero__grid {
@@ -434,14 +435,15 @@ import { siteConfig } from '../config/site';
     }
     .hero__photo {
       object-position: 72% center;
+      filter: brightness(1.16) contrast(1.07) saturate(1.14);
     }
     .hero__shade {
       background: linear-gradient(
         90deg,
-        #081626 0%,
-        #0b1f33 38%,
-        rgb(11 31 51 / 0.55) 56%,
-        rgb(11 31 51 / 0.12) 76%,
+        rgb(8 22 38 / 0.9) 0%,
+        rgb(11 31 51 / 0.7) 34%,
+        rgb(11 31 51 / 0.28) 52%,
+        rgb(11 31 51 / 0.05) 70%,
         transparent 100%
       );
     }
