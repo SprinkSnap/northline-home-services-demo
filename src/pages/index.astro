@@ -16,50 +16,86 @@ import { siteConfig } from '../config/site';
   description={siteConfig.description}
   path="/"
 >
-  <section class="portfolio-notice">
-    <div class="container-nl">
-      <p>
-        <strong>Portfolio concept by Che Xu Studio.</strong>
-        NorthLine Home Services is a fictional demonstration of a conversion-focused contractor website.
-        It is not a real operating company.
-      </p>
+  <section class="hero hero--photo">
+    <div class="hero__media" aria-hidden="true">
+      <img
+        class="hero__photo"
+        src="/images/hero-home-dusk.png"
+        alt=""
+        width="1536"
+        height="1024"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero__shade" aria-hidden="true"></div>
+    <div class="container-nl hero__grid">
+      <div class="hero__copy reveal">
+        <p class="eyebrow hero__eyebrow">Home Comfort Services</p>
+        <h1 class="display hero__title">Reliable Home Comfort, Without the Runaround.</h1>
+        <p class="hero__support">
+          A clear, mobile-first service experience designed to save you time and keep your home
+          comfortable in every season.
+        </p>
+        <ul class="hero__trust">
+          <li>
+            <span class="hero__trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            Trusted Professionals
+          </li>
+          <li>
+            <span class="hero__trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg>
+            </span>
+            On-Time Service
+          </li>
+          <li>
+            <span class="hero__trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M7 11v-1a5 5 0 0 1 10 0v1"/><path d="M8 11h8l1 9H7l1-9z"/><path d="m9.5 15.5 1.5 1.5 3-3"/></svg>
+            </span>
+            Satisfaction Guaranteed
+          </li>
+        </ul>
+        <div class="hero__ctas">
+          <a class="btn btn-primary" href="/request-service">Request Service →</a>
+          <a class="btn hero__secondary" href="/services">Explore Services →</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="hero-plane hero">
-    <div class="container-nl hero__grid">
-      <div class="reveal">
-        <p class="eyebrow" style="color:#F5A623;">Home Comfort Services</p>
-        <h1 class="display hero__title">Reliable Home Comfort, Without the Runaround.</h1>
-        <p class="hero__support">
-          A clear, mobile-first service experience designed to help homeowners understand their
-          options and request help in minutes.
-        </p>
-        <div class="hero__ctas">
-          <a class="btn btn-primary" href="/request-service">Request Service</a>
-          <a class="btn btn-secondary hero__secondary" href="/services">Explore Services</a>
-          <button type="button" class="btn btn-accent" data-open-lead
-            >Build a Website Like This</button
-          >
-        </div>
-        <ul class="hero__reassurance">
-          <li>Clear service options</li>
-          <li>Convenient scheduling patterns</li>
-          <li>Mobile-friendly experience</li>
-          <li>Straightforward next steps</li>
-        </ul>
+  <section class="hero-features" aria-label="Service highlights">
+    <div class="container-nl hero-features__grid">
+      <div>
+        <span class="hero-features__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>
+        </span>
+        <strong>Local &amp; Family Owned</strong>
       </div>
-      <div class="hero__visual" aria-hidden="true">
-        <div class="hero__panel">
-          <img
-            class="hero__illustration"
-            src="/images/local-searches-qualified-enquiries.png"
-            alt=""
-            width="1536"
-            height="864"
-            decoding="async"
-          />
-        </div>
+      <div>
+        <span class="hero-features__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <strong>Licensed &amp; Insured</strong>
+      </div>
+      <div>
+        <span class="hero-features__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="8" cy="9" r="2.5"/><circle cx="16" cy="9" r="2.5"/><circle cx="12" cy="14.5" r="2.5"/><path d="M3.5 19c.8-2.2 2.4-3.5 4.5-3.5.9 0 1.7.2 2.4.6M13.6 16.1c.7-.4 1.5-.6 2.4-.6 2.1 0 3.7 1.3 4.5 3.5"/></svg>
+        </span>
+        <strong>5-Star Rated Service</strong>
+      </div>
+      <div>
+        <span class="hero-features__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/><circle cx="12" cy="15" r="1.5"/></svg>
+        </span>
+        <strong>24/7 Scheduling</strong>
+      </div>
+      <div>
+        <span class="hero-features__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        </span>
+        <strong>Serving Your Community</strong>
       </div>
     </div>
   </section>
@@ -216,74 +252,185 @@ import { siteConfig } from '../config/site';
 </script>
 
 <style>
-  .portfolio-notice {
-    background: #eaf3ff;
-    border-bottom: 1px solid var(--color-border);
-    padding: 0.85rem 0;
+  .hero--photo {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: #fff;
+    min-height: min(92vh, 52rem);
+    display: flex;
+    align-items: flex-end;
+    padding: clamp(4.5rem, 10vw, 7rem) 0 clamp(5.5rem, 12vw, 7.5rem);
   }
-  .portfolio-notice p {
-    margin: 0;
-    color: var(--color-charcoal);
+  .hero__media,
+  .hero__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
   }
-  .hero {
-    padding: clamp(3rem, 7vw, 5.5rem) 0;
+  .hero__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 35% center;
+    display: block;
+    animation: hero-zoom 12s ease-out both;
+  }
+  .hero__shade {
+    background:
+      linear-gradient(180deg, rgb(11 31 51 / 0.55) 0%, rgb(11 31 51 / 0.72) 45%, rgb(11 31 51 / 0.88) 100%),
+      linear-gradient(90deg, rgb(11 31 51 / 0.82) 0%, rgb(11 31 51 / 0.35) 70%, rgb(11 31 51 / 0.15) 100%);
   }
   .hero__grid {
-    display: grid;
-    gap: 2rem;
+    width: 100%;
   }
-  @media (min-width: 1024px) {
-    .hero__grid {
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-    }
+  .hero__copy {
+    max-width: 36rem;
+  }
+  .hero__eyebrow {
+    color: #f5a623;
   }
   .hero__title {
     color: #fff;
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-size: clamp(2.2rem, 5.5vw, 3.7rem);
     margin: 0.5rem 0 1rem;
+    text-wrap: balance;
+    animation: rise-in 700ms ease both;
   }
   .hero__support {
-    color: rgb(255 255 255 / 0.88);
-    font-size: 1.15rem;
-    max-width: 36rem;
+    color: rgb(255 255 255 / 0.9);
+    font-size: 1.1rem;
+    max-width: 34rem;
+    animation: rise-in 850ms ease both;
+  }
+  .hero__trust {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    margin: 1.35rem 0 0;
+    list-style: none;
+    color: #fff;
+  }
+  .hero__trust li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .hero__trust-icon {
+    color: #f5a623;
+    display: inline-flex;
+    flex-shrink: 0;
   }
   .hero__ctas {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    margin: 1.4rem 0 1.25rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0;
+    animation: rise-in 1s ease both;
   }
   .hero__secondary {
-    background: rgb(255 255 255 / 0.1);
-    color: #fff;
-    border-color: rgb(255 255 255 / 0.35);
-  }
-  .hero__reassurance {
-    display: grid;
-    gap: 0.45rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    color: rgb(255 255 255 / 0.9);
-  }
-  .hero__reassurance li::before {
-    content: '✓';
+    background: transparent;
     color: #f5a623;
-    font-weight: 700;
-    margin-right: 0.5rem;
+    border: 1.5px solid #f5a623;
   }
-  .hero__panel {
-    background: rgb(255 255 255 / 0.06);
-    border: 1px solid rgb(255 255 255 / 0.14);
-    border-radius: 1.5rem;
-    padding: 1rem;
+  .hero__secondary:hover,
+  .hero__secondary:focus-visible {
+    background: rgb(245 166 35 / 0.12);
   }
-  .hero__illustration {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
+  .hero-features {
+    position: relative;
+    z-index: 2;
+    margin-top: -2.75rem;
+    padding: 0 0 0.5rem;
+  }
+  .hero-features__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.85rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem 1.25rem 0 0;
+    box-shadow: 0 -8px 30px rgb(11 31 51 / 0.12);
+    padding: 1.25rem 1rem 1.4rem;
+  }
+  .hero-features__grid > div {
+    display: grid;
+    justify-items: center;
+    gap: 0.4rem;
+    text-align: center;
+    color: var(--color-midnight);
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+  .hero-features__grid > div:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 10rem;
+  }
+  .hero-features__icon {
+    color: #176bff;
+    display: inline-flex;
+  }
+  @media (min-width: 640px) {
+    .hero__trust {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    .hero__trust li {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 0.35rem;
+    }
+    .hero__ctas {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero--photo {
+      align-items: center;
+      min-height: min(86vh, 46rem);
+      padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+    .hero__photo {
+      object-position: 70% center;
+    }
+    .hero__shade {
+      background:
+        linear-gradient(90deg, #0b1f33 0%, #0b1f33 42%, rgb(11 31 51 / 0.55) 58%, rgb(11 31 51 / 0.12) 78%, transparent 100%);
+    }
+    .hero__copy {
+      max-width: 34rem;
+    }
+    .hero-features {
+      margin-top: 0;
+      padding: 0;
+      background: #fff;
+      border-top: 1px solid var(--color-border);
+    }
+    .hero-features__grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 1.35rem 0;
+    }
+    .hero-features__grid > div:last-child {
+      grid-column: auto;
+      max-width: none;
+      justify-self: stretch;
+    }
+  }
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
   }
   .section-title {
     font-size: clamp(1.7rem, 3vw, 2.4rem);
