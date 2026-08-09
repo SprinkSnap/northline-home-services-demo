@@ -35,15 +35,17 @@ export const siteConfig = {
     siteKey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '',
   },
   /**
-   * Case-study brief shown below the desktop / mobile responsive mockup
+   * Case-study brief shown below the desktop / tablet / mobile responsive mockup
    * (conversion & SEO section) on the Che Xu Studio portfolio page.
    * NorthLine is a fictional demonstration — not a real client project.
+   * Regenerate hero frames with `npm run screenshots:case-study`.
    */
   caseStudy: {
-    sectionTitle: 'Desktop view · Mobile responsive · Conversion & SEO',
+    sectionTitle: 'Desktop view · Tablet · Mobile responsive · Conversion & SEO',
     presentation: 'portfolio-concept' as const,
     images: {
       desktop: '/images/case-study/desktop-homepage.png',
+      tablet: '/images/case-study/tablet-homepage.png',
       mobile: '/images/case-study/mobile-homepage.png',
     },
     clientIndustry: {

@@ -6,8 +6,9 @@
 | ---------------------------------------------------------- | ----------------------------------------- | ------------------------------ | -------------------------------------- |
 | `public/favicon.svg`                                       | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Custom NL mark                         |
 | `public/images/og-northline.svg`                           | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Social sharing image                   |
-| `public/images/case-study/desktop-homepage.png`            | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study desktop mockup              |
-| `public/images/case-study/mobile-homepage.png`             | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study mobile mockup               |
+| `public/images/case-study/desktop-homepage.png`            | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study desktop mockup (1440×900)   |
+| `public/images/case-study/tablet-homepage.png`             | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study tablet mockup (768×1024)    |
+| `public/images/case-study/mobile-homepage.png`             | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Case-study mobile mockup (390×844)     |
 | `public/images/hero-home-dusk.png`                         | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Homepage hero house photograph         |
 | `public/images/local-searches-qualified-enquiries.png`     | Original — Che Xu Studio / NorthLine demo | All rights reserved (demo use) | Conversion funnel illustration         |
 | Icon set in `src/components/icons` and `ServiceIcon.astro` | Original stroke icons                     | All rights reserved (demo use) | Not copied from a commercial icon pack |
